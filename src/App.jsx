@@ -1,33 +1,32 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./Components/Navbar";
-import Home from "./pages/Home";
+import Home from "./Pages/Home";
 
 
+import HotelDetail from "./Pages/HotelDetail";
+import HotelListPage from "./Pages/HotelListpage";
+import OfferHotels from "./Pages/OfferHotels";
+import OfferDetails from "./Pages/OfferDetails";
 
-import HotelDetail from "./pages/HotelDetail";
-import HotelListPage from "./pages/HotelListpage";
-import OfferHotels from "./pages/OfferHotels";
-import OfferDetails from "./pages/OfferDetails";
+import SignIn from "./Pages/SignIn";
+import Register from"./Pages/Register";
 
-import SignIn from "./pages/SignIn";
-import Register from"./pages/Register";
+import ContactUs from "./Pages/ContactUs";
+import Partner from "./Pages/Partner";
+// import Payment from "./Pages/Payment";
+import Aboutus from "./Pages/Aboutus";
+import Blog from "./Pages/Blog";
+import Support from "./Pages/Support";
 
-import ContactUs from "./pages/ContactUs";
-import Partner from "./pages/Partner";
-// import Payment from "./pages/Payment";
-import Aboutus from "./pages/Aboutus";
-import Blog from "./pages/Blog";
-import Support from "./pages/Support";
-
-import Terms from"./pages/Terms";
-import Cancel from "./pages/Cancel";
-import GuestPolicy from "./pages/Guestpolicy";
-import Policy from "./pages/Policy";
-import TrustAndSafety from "./pages/Trust&safety";
-import CyberSecurity from "./pages/cybersecurity";
-import CyberSecurityAwareness from "./pages/CyberAwareness";
-import ResponsibleDisclosure from "./pages/ResponsibleDisclosure";
+import Terms from"./Pages/Terms";
+import Cancel from "./Pages/Cancel";
+import GuestPolicy from "./Pages/Guestpolicy";
+import Policy from "./Pages/Policy";
+import TrustAndSafety from "./Pages/Trust&safety";
+import CyberSecurity from "./Pages/cybersecurity";
+import CyberSecurityAwareness from "./Pages/CyberAwareness";
+import ResponsibleDisclosure from "./Pages/ResponsibleDisclosure";
 import Footer from "./Components/Footer";
 
 const ScrollToTop = () => {
