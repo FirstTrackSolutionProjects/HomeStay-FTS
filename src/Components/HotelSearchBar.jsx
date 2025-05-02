@@ -1,7 +1,7 @@
 import React from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaCalendarAlt, FaUser } from "react-icons/fa";
-import { Button } from "../components/ui/button"; 
+import { Button } from "../Components/ui/button"; 
 
 export default function HotelSearchBar() {
   return (
