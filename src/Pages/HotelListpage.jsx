@@ -174,37 +174,54 @@ const hotelGroups = {
   ],
 };
 
+
 const HotelListPage = () => {
   const { locationId } = useParams();
   const hotels = hotelGroups[locationId] || [];
 
   return (
-    <div className="p-6 space-y-8">
-      <h2 className="text-3xl font-bold text-center text-purple-700 ">Available Hotels</h2>
+    <div className="p-6 max-w-7xl mx-auto">
+      <h2 className="text-3xl font-bold text-center text-purple-700 mb-8">Available Hotels</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {hotels.map((hotel) => (
           <Link
-            to={`/hotel/${hotel.id}`}
+            to={`/hotel/detail/${hotel.id}`}
             key={hotel.id}
-            className="border rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-transform transform hover:scale-105 bg-white"
+            className="border rounded-xl overflow-hidden shadow hover:shadow-lg transition-all duration-200 bg-white"
           >
             <img
               src={hotel.image}
               alt={hotel.name}
-              className="w-full h-56 object-cover"
+              className="w-full h-48 object-cover"
             />
-            <div className="p-4 flex flex-col justify-between h-30">
-              <h3 className="text-lg font-semibold text-gray-800">{hotel.name}</h3>
 
-              {/* Show actual stars */}
-              <p className="text-yellow-400 text-base">
-                {"⭐".repeat(hotel.stars)}
-              </p>
-
-              <p className="text-blue-600 font-bold text-lg mt-2">
-                ₹{hotel.price.toLocaleString()} <span className="text-sm font-medium text-gray-500">/ {hotel.unit}</span>
-              </p>
+            <div className="p-4 space-y-2">
+              <h3 className="text-lg font-bold text-gray-800">{hotel.name}</h3>
+              <div className="flex items-center space-x-0.5">
+                {Array.from({ length: 7 }).map((_, i) => (
+                 <span
+                  key={i}
+                    className={`${
+                  i < hotel.stars ? "text-yellow-400 text-lg" : "text-gray-400 text-sm"
+                  }`}
+                >
+              ★
+            </span>
+          ))}
+        </div>
+          
+          <div className="flex items-center justify-between mt-2">
+                <div>
+                  <p className="text-xl font-bold text-green-600">
+                    ₹{hotel.price.toLocaleString()}
+                  </p>
+                  <p className="text-xs text-gray-500">per {hotel.unit}</p>
+                </div>
+                <button className="text-sm bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+                  View Details
+                </button>
+              </div>
             </div>
           </Link>
         ))}
@@ -213,4 +230,164 @@ const HotelListPage = () => {
   );
 };
 
+
 export default HotelListPage;
+
+// import React, { useState } from "react";
+// import { Link, useParams } from "react-router-dom";
+
+
+// const hotelGroups = {
+//   delhi: [
+//     {
+//       id: "delhi-1",
+//       name: "Hotel Sunshine Inn",
+//       image: "https://source.unsplash.com/400x300/?hotel,room",
+//       stars: 5,
+//       price: 1200,
+//       unit: "night",
+//     },
+//     {
+//       id: "delhi-2",
+//       name: "Elite Stay Delhi",
+//       image: "https://source.unsplash.com/400x300/?luxury,hotel",
+//       stars: 4,
+//       price: 1800,
+//       unit: "night",
+//     },
+//   ],
+//   mumbai: [
+//     {
+//       id: "mumbai-1",
+//       name: "Mumbai Comfort Stay",
+//       image: "https://source.unsplash.com/400x300/?mumbai,hotel",
+//       stars: 4,
+//       price: 2000,
+//       unit: "night",
+//     },
+//   ],
+// };
+
+// const HotelListPage = () => {
+//   const { locationId } = useParams();
+//   const hotels = hotelGroups[locationId] || [];
+
+//   const [selectedCollections, setSelectedCollections] = useState([]);
+//   const [selectedCategories, setSelectedCategories] = useState([]);
+//   const [priceRange, setPriceRange] = useState([500, 10000]);
+
+//   const handleCheckboxChange = (type, value) => {
+//     const current = type === "collections" ? selectedCollections : selectedCategories;
+//     const setter = type === "collections" ? setSelectedCollections : setSelectedCategories;
+//     if (current.includes(value)) {
+//       setter(current.filter((item) => item !== value));
+//     } else {
+//       setter([...current, value]);
+//     }
+//   };
+
+//   return (
+//     <div className="p-6 max-w-7xl mx-auto">
+//       <h2 className="text-3xl font-bold text-center text-purple-700 mb-8">Available Hotels</h2>
+
+//       {/* Filters */}
+//       <div className="mb-6 p-4 border border-gray-200 rounded-lg bg-white shadow-sm">
+//         <h3 className="text-xl font-semibold mb-4">Filters</h3>
+
+//         {/* Price Range */}
+//         <div className="mb-4">
+//           <label className="block mb-1 font-medium">Price Range</label>
+//           <input
+//             type="range"
+//             min="400"
+//             max="15000"
+//             value={priceRange[1]}
+//             onChange={(e) => setPriceRange([400, Number(e.target.value)])}
+//             className="w-full"
+//           />
+//           <div className="flex justify-between text-sm mt-1">
+//             <span>₹{priceRange[0]}</span>
+//             <span>₹{priceRange[1]}</span>
+//           </div>
+//         </div>
+
+//         {/* Collections */}
+//         <div className="mb-4">
+//           <label className="block mb-1 font-medium">Collections</label>
+//           <div className="flex flex-wrap gap-3">
+//             {["Family OYOs", "Group Travellers", "Local IDs", "Couples", "International Guests"].map((item) => (
+//               <label key={item} className="flex items-center gap-1">
+//                 <input
+//                   type="checkbox"
+//                   checked={selectedCollections.includes(item)}
+//                   onChange={() => handleCheckboxChange("collections", item)}
+//                 />
+//                 <span className="text-sm">{item}</span>
+//               </label>
+//             ))}
+//           </div>
+//         </div>
+
+//         {/* Categories */}
+//         <div className="mb-2">
+//           <label className="block mb-1 font-medium">Categories</label>
+//           <div className="flex flex-wrap gap-3">
+//             {["OYO Rooms", "Premium", "Townhouse", "Flagship", "Home"].map((item) => (
+//               <label key={item} className="flex items-center gap-1">
+//                 <input
+//                   type="checkbox"
+//                   checked={selectedCategories.includes(item)}
+//                   onChange={() => handleCheckboxChange("categories", item)}
+//                 />
+//                 <span className="text-sm">{item}</span>
+//               </label>
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Hotel Listings */}
+//       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+//         {hotels
+//           .filter((hotel) => hotel.price >= priceRange[0] && hotel.price <= priceRange[1])
+//           .map((hotel) => (
+//             <Link
+//               to={`/hotel/detail/${hotel.id}`}
+//               key={hotel.id}
+//               className="border rounded-xl overflow-hidden shadow hover:shadow-lg transition-all duration-200 bg-white"
+//             >
+//               <img src={hotel.image} alt={hotel.name} className="w-full h-48 object-cover" />
+//               <div className="p-4 space-y-2">
+//                 <h3 className="text-lg font-bold text-gray-800">{hotel.name}</h3>
+//                 <div className="flex items-center space-x-0.5">
+//                   {Array.from({ length: 7 }).map((_, i) => (
+//                     <span
+//                       key={i}
+//                       className={`${
+//                         i < hotel.stars ? "text-yellow-400 text-lg" : "text-gray-300 text-sm"
+//                       }`}
+//                     >
+//                       ★
+//                     </span>
+//                   ))}
+//                 </div>
+//                 <div className="flex items-center justify-between mt-2">
+//                   <div>
+//                     <p className="text-xl font-bold text-green-600">
+//                       ₹{hotel.price.toLocaleString()}
+//                     </p>
+//                     <p className="text-xs text-gray-500">per {hotel.unit}</p>
+//                   </div>
+//                   <button className="text-sm bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+//                     View Details
+//                   </button>
+//                 </div>
+//               </div>
+//             </Link>
+//           ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default HotelListPage;

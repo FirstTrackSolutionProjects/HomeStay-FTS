@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./Components/Navbar";
-import Home from "./Pages/Home";
+import Home from "./Pages/HomePage";
 
 
 import HotelDetail from "./Pages/HotelDetail";
@@ -14,6 +14,7 @@ import Register from"./Pages/Register";
 
 import ContactUs from "./Pages/ContactUs";
 import Partner from "./Pages/Partner";
+import PartnerForm from "./Pages/PartnerForm";
 // import Payment from "./Pages/Payment";
 import Aboutus from "./Pages/Aboutus";
 import Blog from "./Pages/Blog";
@@ -55,8 +56,9 @@ const App = () => {
         {/* <Route path="/payment" element={<Payment />} />  */}
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/partner" element={<Partner />} />
+        <Route path="/partner/:propertyType" element={<PartnerForm />} /> 
         <Route path="/aboutus" element={<Aboutus />} /> 
-        <Route path="/Home" element={<App />} />
+        
         <Route path="/Register" element={<Register />} />
         <Route path="/terms" element={<Terms />} /> 
         <Route path="/cancel" element={<Cancel />} /> 
@@ -77,7 +79,3 @@ const App = () => {
 }
 
 export default App;
-
-
-
-

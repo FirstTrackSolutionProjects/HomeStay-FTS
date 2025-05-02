@@ -10,8 +10,8 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white pt-10 px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 pb-10 border-b border-gray-700">
+    <footer className="bg-gray-700 text-white  pt-10 px-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 pb-10 border-b border-gray-700 ">
         {/* Logo Section */}
         <div className="flex flex-col items-start">
           <img
@@ -19,7 +19,7 @@ const Footer = () => {
             alt="First HomeStay Logo"
             className="w-16 mb-4"
           />
-          <p className="text-sm text-gray-400">First HomeStay</p>
+          <p className="text-sm text-gray-400">First Home Stay</p>
         </div>
 
         {/* Contact Section */}
@@ -115,44 +115,45 @@ const Footer = () => {
         {/* Hotels */}
         <div>
           <h4 className="text-lg font-semibold mb-2">Hotels Near Me</h4>
-          <ul className="space-y-1 text-sm text-gray-400">
-            <li><Link to="/manali" className="hover:text-white">Hotels in Manali</Link></li>
-            <li><Link to="/nainital" className="hover:text-white">Hotels in Nainital</Link></li>
-            <li><Link to="/agra" className="hover:text-white">Hotels in Agra</Link></li>
-            <li><Link to="/haridwar" className="hover:text-white">Hotels in Haridwar</Link></li>
-            <li><Link to="/goa" className="hover:text-white">Hotels in Goa</Link></li>
-            <li><Link to="/mysore" className="hover:text-white">Hotels in Mysore</Link></li>
+          <ul className="space-y-1 text-sm text-gray-200">
+            <li><Link to="/manali" className="hover:text-yellow-600">Hotels in Manali</Link></li>
+            <li><Link to="/nainital" className="hover:text-yellow-600">Hotels in Nainital</Link></li>
+            <li><Link to="/agra" className="hover:text-yellow-600">Hotels in Agra</Link></li>
+            <li><Link to="/haridwar" className="hover:text-yellow-600">Hotels in Haridwar</Link></li>
+            <li><Link to="/goa" className="hover:text-yellow-600">Hotels in Goa</Link></li>
+            <li><Link to="/mysore" className="hover:text-yellow-600">Hotels in Mysore</Link></li>
           </ul>
         </div>
 
         {/* Company */}
         <div>
           <h4 className="text-lg font-semibold mb-2">Company</h4>
-          <ul className="space-y-1 text-sm text-gray-400">
-            <li><Link to="/aboutus" className="hover:text-white">About Us</Link></li>
-            <li><Link to="/blogs" className="hover:text-white">Blogs</Link></li>
-            <li><Link to="/support" className="hover:text-white">Support</Link></li>
-            <li><Link to="/contactus" className="hover:text-white">Contact Us</Link></li>
+          <ul className="space-y-1 text-sm text-gray-200">
+            <li><Link to="/aboutus" className="hover:text-yellow-600">About Us</Link></li>
+            <li><Link to="/blogs" className="hover:text-yellow-600">Blogs</Link></li>
+            <li><Link to="/support" className="hover:text-yellow-600">Support</Link></li>
+            <li><Link to="/contactus" className="hover:text-yellow-600">Contact Us</Link></li>
+            <li><Link to="/partner" className="hover:text-yellow-600">Partner</Link></li>
           </ul>
         </div>
 
         {/* Policies */}
         <div>
           <h4 className="text-lg font-semibold mb-2">Policies</h4>
-          <ul className="space-y-1 text-sm text-gray-400">
-            <li><Link to="/terms" className="hover:text-white">Terms and Conditions</Link></li>
-            <li><Link to="/cancel" className="hover:text-white">Refund And Cancellation</Link></li>
-            <li><Link to="/guest-policy" className="hover:text-white">Guest Policy</Link></li>
-            <li><Link to="/policy" className="hover:text-white">Privacy Policy</Link></li>
-            <li><Link to="/safety" className="hover:text-white">Trust and Safety</Link></li>
-            <li><Link to="/security" className="hover:text-white">Cyber Security</Link></li>
-            <li><Link to="/security-awareness" className="hover:text-white">Cyber Security Awareness</Link></li>
-            <li><Link to="/disclosure" className="hover:text-white">Responsible Disclosure</Link></li>
+          <ul className="space-y-1 text-sm text-gray-200">
+            <li><Link to="/terms" className="hover:text-yellow-600">Terms and Conditions</Link></li>
+            <li><Link to="/cancel" className="hover:text-yellow-600">Refund And Cancellation</Link></li>
+            <li><Link to="/guest-policy" className="hover:text-yellow-600">Guest Policy</Link></li>
+            <li><Link to="/policy" className="hover:text-yellow-600">Privacy Policy</Link></li>
+            <li><Link to="/safety" className="hover:text-yellow-600">Trust and Safety</Link></li>
+            <li><Link to="/security" className="hover:text-yellow-600">Cyber Security</Link></li>
+            <li><Link to="/security-awareness" className="hover:text-yellow-600">Cyber Security Awareness</Link></li>
+            <li><Link to="/disclosure" className="hover:text-yellow-600">Responsible Disclosure</Link></li>
           </ul>
         </div>
       </div>
 
-      <div className="text-center py-4 text-sm text-gray-500 border-t border-gray-700">
+      <div className="text-center py-4 text-sm text-white border-t">
         Copyright©2025 First HomeStay. All rights reserved.
       </div>
     </footer>
