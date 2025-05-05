@@ -439,7 +439,8 @@
 
 import React from "react";
 import HotelCard from "../Components/HotelCard";
-import hotels from "../data/hotels"; // assume this holds hotel info
+import { hotels } from "../data/hotels";
+
 
 const HotelListPage = () => {
   return (
