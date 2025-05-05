@@ -503,7 +503,7 @@ const HotelListPage = () => {
             {/* Hotel Facilities */}
             <div className="mb-6">
             <h3 className="font-medium">Hotel Facilities</h3>
-            {["Seating area", "king Sized Bed", "Queen Sized Bed"].map(item => (
+            {["Seating area", "king Sized Bed", "Queen Sized Bed","Swimming Pool"].map(item => (
               <div key={item} className="flex items-center">
                 <input type="checkbox" id={item} />
                 <label htmlFor={item} className="ml-2">{item}</label>
