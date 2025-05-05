@@ -439,12 +439,13 @@
 
 import React from "react";
 import HotelCard from "../Components/HotelCard";
-import hotels from "../data/hotels"; // assume this holds hotel info
+import { hotels } from "../data/hotels";
+
 
 const HotelListPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Search + Sort */}
+      <h1 className="text-3xl font-bold text-center my-8">Available Hotels</h1>
       <div className="flex flex-col sm:flex-row justify-between items-center p-4 bg-white shadow">
         <input
           type="text"
@@ -472,7 +473,7 @@ const HotelListPage = () => {
               min="500"
               max="10000"
               step="500"
-              className="w-full mt-2"
+              className="w-full mt-3"
             />
             <p className="text-sm mt-1 text-gray-600">Adjust price range</p>
           </div>
