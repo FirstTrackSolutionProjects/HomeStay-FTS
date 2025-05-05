@@ -473,7 +473,7 @@ const HotelListPage = () => {
               min="500"
               max="10000"
               step="500"
-              className="w-full mt-2"
+              className="w-full mt-3"
             />
             <p className="text-sm mt-1 text-gray-600">Adjust price range</p>
           </div>
