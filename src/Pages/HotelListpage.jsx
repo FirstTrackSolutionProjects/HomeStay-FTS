@@ -444,7 +444,7 @@ import hotels from "../data/hotels"; // assume this holds hotel info
 const HotelListPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Search + Sort */}
+      <h1 className="text-3xl font-bold text-center my-8">Available Hotels</h1>
       <div className="flex flex-col sm:flex-row justify-between items-center p-4 bg-white shadow">
         <input
           type="text"
