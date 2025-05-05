@@ -5,7 +5,7 @@ import Home from "./Pages/HomePage";
 
 
 import HotelDetail from "./Pages/HotelDetail";
-import HotelListPage from "./Pages/HotelListpage";
+import HotelListpage from "./Pages/HotelListpage";
 import OfferHotels from "./Pages/OfferHotels";
 import OfferDetails from "./Pages/OfferDetails";
 
@@ -47,8 +47,9 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} /> 
-        <Route path="/hotels/:locationId" element={<HotelListPage />} />
+        <Route path="/hotels/:locationId" element={<HotelListpage />} />
         <Route path="/hotel/detail/:hotelId" element={<HotelDetail />} />
+          
         <Route path="/offer/:offerId" element={<OfferHotels />} />
         <Route path="/hotel/offer/:hotelName" element={<OfferDetails />} />
         <Route path="/sign-in" element={<SignIn />} />

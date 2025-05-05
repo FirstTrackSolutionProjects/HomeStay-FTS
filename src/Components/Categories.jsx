@@ -9,35 +9,71 @@ export const categories = [
     rating: 4.5,
     price: 69,
     unit: "night",
-    hotel: "Hotels in Paharganj, Delhi",
+    hotel: "Hotels in Delhi",
   },
   {
     image: "/images/h2.jpg",
     rating: 3.2,
     price: 49,
     unit: "trip",
-    hotel: "Hotels in Banjara Hills, Hyderabad",
+    hotel: "Hotels in Hyderabad",
+  },
+  {
+    image: "/images/h2.jpg",
+    rating: 3.2,
+    price: 49,
+    unit: "trip",
+    hotel: "Hotels in Kolkata",
   },
   {
     image: "/images/h3.jpg",
     rating: 4.7,
     price: 299,
     unit: "session",
-    hotel: "Hotels in MG Road, Bengaluru",
+    hotel: "Hotels in Bengaluru",
   },
   {
     image: "/images/h4.jpg",
     rating: 3.9,
     price: 19,
     unit: "month",
-    hotel: "Hotels in Civil Lines, Jaipur",
+    hotel: "Hotels in Bhubaneswar",
   },
   {
     image: "/images/h5.jpg",
     rating: 5.0,
     price: 59,
     unit: "suite",
-    hotel: "Hotels in Rajpur Road, Dehradun",
+    hotel: "Hotels in Indore",
+    
+  },
+  {
+    image: "/images/h2.jpg",
+    rating: 3.2,
+    price: 49,
+    unit: "trip",
+    hotel: "Hotels in Patna",
+  },
+  {
+    image: "/images/h5.jpg",
+    rating: 5.0,
+    price: 59,
+    unit: "suite",
+    hotel: "Hotels in Lucknow",
+  },
+  {
+    image: "/images/h2.jpg",
+    rating: 3.2,
+    price: 49,
+    unit: "trip",
+    hotel: "Hotels in Patiala",
+  },
+  {
+    image: "/images/h5.jpg",
+    rating: 5.0,
+    price: 59,
+    unit: "suite",
+    hotel: "Hotels in Jaipur",
   },
 ];
 
@@ -58,6 +94,10 @@ const getStarRating = (rating) => {
 
 const Categories = () => {
   return (
+    <div className="bg-gray-100 py-10 px-4">
+      <h1 className="text-4xl font-bold text-center mb-6">
+        Choose Your Hotel
+      </h1>
     <div className="p-4 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {categories.map((cat, index) => (
         <Link
@@ -80,6 +120,7 @@ const Categories = () => {
           </div>
         </Link>
       ))}
+    </div>
     </div>
   );
 };

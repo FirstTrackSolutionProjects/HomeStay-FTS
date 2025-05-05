@@ -5,7 +5,7 @@ const GuestPolicy = () => {
     <div className="flex justify-center items-center py-10 min-h-screen bg-gray-100">
       <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-4xl">
         <h1 className="text-2xl font-semibold text-center mb-6">
-          Guest Policy for First Home Stay
+          Guest Policy 
         </h1>
 
         <div className="text-sm font-sans space-y-6">
@@ -15,10 +15,13 @@ const GuestPolicy = () => {
             </h5>
             <ul className="list-disc ml-6 mt-1 space-y-1">
               <li>
-                Check-in time: <strong>[Insert Time]</strong>
+                Check-in time: <strong>[11 AM]</strong>
               </li>
               <li>
-                Check-out time: <strong>[Insert Time]</strong>
+                Check-out time: <strong>[11 PM]</strong>
+              </li>
+              <li>
+                Sometimes Check-In and Check-Out times depends upon the hotel policy.
               </li>
               <li>
                 Early check-in or late check-out may be available on request,
@@ -87,7 +90,7 @@ const GuestPolicy = () => {
             </h5>
             <p className="mt-1">
               Guests are responsible for any damage caused during their stay. A
-              damage deposit may be required at check-in.
+              damage deposit may be required at check-out.
             </p>
           </div>
 
