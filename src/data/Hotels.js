@@ -57,7 +57,9 @@
 //   ];
   
 //   export default hotels;
-const hotels = [
+
+// src/data/hotels.js
+export const hotels = [
   {
     id: 1,
     name: "Hotel Shanti Palace",
@@ -73,8 +75,5 @@ const hotels = [
     price: 4899,
     rating: 3.7,
     image: "/images/h2.jpg"
-  },
-  
+  }
 ];
-
-export default hotels;
