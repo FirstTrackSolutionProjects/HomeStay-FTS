@@ -19,7 +19,7 @@ const Footer = () => {
             alt="First HomeStay Logo"
             className="w-16 mb-4"
           />
-          <p className="text-sm text-gray-400">First Home Stay</p>
+          <p className="text-sm text-white"> <span className="text-black font-bold">First</span> <span className="text-red-700 font-bold">Home</span> <span className="text-green-950 font-bold">Stay</span></p>
         </div>
 
         {/* Contact Section */}
@@ -114,7 +114,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 py-8">
         {/* Hotels */}
         <div>
-          <h4 className="text-lg font-semibold mb-2">Hotels Near Me</h4>
+          <h4 className="text-lg font-semibold mb-2 text-yellow-500">Hotels Near Me</h4>
           <ul className="space-y-1 text-sm text-gray-200">
             <li><Link to="/manali" className="hover:text-yellow-600">Hotels in Manali</Link></li>
             <li><Link to="/nainital" className="hover:text-yellow-600">Hotels in Nainital</Link></li>
@@ -127,7 +127,7 @@ const Footer = () => {
 
         {/* Company */}
         <div>
-          <h4 className="text-lg font-semibold mb-2">Company</h4>
+          <h4 className="text-lg font-semibold mb-2 text-yellow-500">Company</h4>
           <ul className="space-y-1 text-sm text-gray-200">
             <li><Link to="/aboutus" className="hover:text-yellow-600">About Us</Link></li>
             <li><Link to="/blogs" className="hover:text-yellow-600">Blogs</Link></li>
@@ -139,7 +139,7 @@ const Footer = () => {
 
         {/* Policies */}
         <div>
-          <h4 className="text-lg font-semibold mb-2">Policies</h4>
+          <h4 className="text-lg font-semibold mb-2 text-yellow-500">Policies</h4>
           <ul className="space-y-1 text-sm text-gray-200">
             <li><Link to="/terms" className="hover:text-yellow-600">Terms and Conditions</Link></li>
             <li><Link to="/cancel" className="hover:text-yellow-600">Refund And Cancellation</Link></li>
@@ -154,7 +154,7 @@ const Footer = () => {
       </div>
 
       <div className="text-center py-4 text-sm text-white border-t">
-        Copyright©2025 First HomeStay. All rights reserved.
+        Copyright©2025 <span className="text-black font-bold">First</span> <span className="text-red-700 font-bold">Home</span> <span className="text-green-950 font-bold">Stay</span> .  All rights reserved.
       </div>
     </footer>
   );
