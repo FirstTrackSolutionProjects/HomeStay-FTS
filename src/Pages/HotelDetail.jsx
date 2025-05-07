@@ -722,7 +722,7 @@
 
 import React from "react";
 import { Card, CardContent } from "../Components/ui/Card";
-import Button from "../components/ui/Button";
+import Button from "../Components/ui/Button";
 
 import { Star } from "lucide-react";
 
