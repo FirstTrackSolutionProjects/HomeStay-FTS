@@ -35,8 +35,7 @@ const GuestPolicy = () => {
               2. Identification
             </h5>
             <p className="mt-1">
-              Valid government-issued photo identification is required at
-              check-in for all guests.
+              Valid government-issued photo identification is required at the time of check-in for all guests.
             </p>
           </div>
 
@@ -57,10 +56,8 @@ const GuestPolicy = () => {
             <ul className="list-disc ml-6 mt-1 space-y-1">
              
               <li>No pets allowed unless specified.</li>
-              <li>
-                Quiet hours are from <strong>[Insert Time]</strong> to{" "}
-                <strong>[Insert Time]</strong>.
-              </li>
+              <li>Visitors are not to be allowed to stay overnight.</li>
+              
             </ul>
           </div>
 
@@ -120,7 +117,7 @@ const GuestPolicy = () => {
             </h5>
             <p className="mt-1">
               For assistance, please contact our support team or call us at{" "}
-              <strong>[Insert Contact Details]</strong>.
+              <strong>9040170727</strong>or email us <strong>support@firsthomestay.com</strong>
             </p>
           </div>
         </div>

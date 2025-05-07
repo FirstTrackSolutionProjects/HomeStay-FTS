@@ -437,16 +437,125 @@
 
 // export default HotelListPage;
 
-import React from "react";
+// import React from "react";
+// import HotelCard from "../Components/HotelCard";
+// import { hotels } from "../data/hotels";
+
+
+// const HotelListPage = () => {
+//   return (
+//     <div className="min-h-screen bg-gray-50">
+//       <h1 className="text-3xl font-bold text-center my-8">Available Hotels</h1>
+//       <div className="flex flex-col sm:flex-row justify-between items-center p-4 bg-white shadow">
+//         <input
+//           type="text"
+//           placeholder="Search hotels..."
+//           className="w-full sm:w-1/2 px-4 py-2 border rounded mb-4 sm:mb-0"
+//         />
+//         <select className="border p-2 rounded w-full sm:w-auto">
+//           <option>Sort by Popularity</option>
+//           <option>Price Low to High</option>
+//           <option>Rating</option>
+//         </select>
+//       </div>
+
+//       {/* Filters + Hotel Cards */}
+//       <div className="flex flex-col-reverse sm:flex-row gap-4 p-4">
+//         {/* Sidebar for Filters */}
+//         <div className="w-full sm:w-1/4 bg-white p-4 rounded-lg shadow mb-4 sm:mb-0">
+//           <h2 className="text-xl font-semibold mb-4">Filters</h2>
+
+//           {/* Price Range */}
+//           <div className="mb-6">
+//             <h3 className="font-medium">Price Range</h3>
+//             <input
+//               type="range"
+//               min="500"
+//               max="10000"
+//               step="500"
+//               className="w-full mt-3"
+//             />
+//             <p className="text-sm mt-1 text-gray-600">Adjust price range</p>
+//           </div>
+
+//           {/* Category  Collection */}
+//           <div className="mb-6">
+//             <h3 className="font-medium">Collections</h3>
+//             {["Couple Friendly", "Business", "Luxury", "Budget"].map(item => (
+//               <div key={item} className="flex items-center">
+//                 <input type="checkbox" id={item} />
+//                 <label htmlFor={item} className="ml-2">{item}</label>
+//               </div>
+//             ))}
+//           </div>
+
+//           {/* Accommodation Type */}
+//           <div className="mb-6">
+//             <h3 className="font-medium">Accommodation Type</h3>
+//             {["Hotel", "Guest House", "Resort"].map(item => (
+//               <div key={item} className="flex items-center">
+//                 <input type="checkbox" id={item} />
+//                 <label htmlFor={item} className="ml-2">{item}</label>
+//               </div>
+//             ))}
+//           </div>
+
+//             {/* Hotel Facilities */}
+//             <div className="mb-6">
+//             <h3 className="font-medium">Hotel Facilities</h3>
+//             {["Seating area", "king Sized Bed", "Queen Sized Bed","Swimming Pool"].map(item => (
+//               <div key={item} className="flex items-center">
+//                 <input type="checkbox" id={item} />
+//                 <label htmlFor={item} className="ml-2">{item}</label>
+//               </div>
+//             ))}
+//           </div>
+
+//           {/* Check-In Features */}
+//           <div className="mb-6">
+//             <h3 className="font-medium">Check-In Features</h3>
+//             {["24x7 Check-In", "Free Cancellation", "No ID Required"].map(item => (
+//               <div key={item} className="flex items-center">
+//                 <input type="checkbox" id={item} />
+//                 <label htmlFor={item} className="ml-2">{item}</label>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+
+//         {/* Main Content: Hotel Cards */}
+//         <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+//           {hotels.map((hotel, index) => (
+//             <HotelCard key={index} hotel={hotel} />
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default HotelListPage;
+
+
+import React, { useState } from "react";
 import HotelCard from "../Components/HotelCard";
 import { hotels } from "../data/hotels";
 
 
 const HotelListPage = () => {
+  const [price, setPrice] = useState(500);
+
+  const handlePriceChange = (e) => {
+    setPrice(Number(e.target.value));
+  };
+ 
+
   return (
     <div className="min-h-screen bg-gray-50">
       <h1 className="text-3xl font-bold text-center my-8">Available Hotels</h1>
-      <div className="flex flex-col sm:flex-row justify-between items-center p-4 bg-white shadow">
+
+      {/* Search & Sort */}
+      <div className="flex flex-col sm:flex-row justify-between items-center px-6 py-4 bg-white shadow rounded-md mx-auto max-w-7xl">
         <input
           type="text"
           placeholder="Search hotels..."
@@ -460,78 +569,109 @@ const HotelListPage = () => {
       </div>
 
       {/* Filters + Hotel Cards */}
-      <div className="flex flex-col-reverse sm:flex-row gap-4 p-4">
-        {/* Sidebar for Filters */}
-        <div className="w-full sm:w-1/4 bg-white p-4 rounded-lg shadow mb-4 sm:mb-0">
-          <h2 className="text-xl font-semibold mb-4">Filters</h2>
+      <div className="flex flex-col-reverse lg:flex-row gap-6 px-4 lg:px-10 py-6 max-w-7xl mx-auto">
+        {/* Sidebar Filters */}
+        <div className="w-full lg:w-1/4 bg-white p-6 rounded-xl shadow">
+          <h2 className="text-2xl font-semibold mb-4">Filters</h2>
 
           {/* Price Range */}
-          <div className="mb-6">
-            <h3 className="font-medium">Price Range</h3>
-            <input
-              type="range"
-              min="500"
-              max="10000"
-              step="500"
-              className="w-full mt-3"
-            />
-            <p className="text-sm mt-1 text-gray-600">Adjust price range</p>
+          <div className="mb-8">
+            <h3 className="mb-9 font-extrabold">Price Range</h3>
+            <div className="relative mb-1">
+              <div
+                className="absolute -top-7 text-sm font-semibold text-blue-600"
+                style={{
+                  left: `${((price - 445) / (10000 - 445)) * 100}%`,
+                  transform: "translateX(-50%)",
+                }}
+              >
+                ₹{price} /day
+              </div>
+              <input
+                type="range"
+                min="445"
+                max="10000"
+                step="100"
+                value={price}
+                onChange={handlePriceChange}
+                className="w-full"
+              />
+            </div>
+            <div className="flex justify-between text-sm text-gray-500">
+              <span>₹445</span>
+              <span>₹10,000</span>
+            </div>
+            {/* <p className="text-sm text-gray-500 mt-1">Adjust price range</p> */}
           </div>
 
-          {/* Category  Collection */}
+          {/* Collections */}
           <div className="mb-6">
-            <h3 className="font-medium">Collections</h3>
-            {["Couple Friendly", "Business", "Luxury", "Budget"].map(item => (
-              <div key={item} className="flex items-center">
+            <h3 className="font-medium mb-2">Collections</h3>
+            {["Couple Friendly", "International Guests", "Business Travellers", "Budget"].map((item) => (
+              <label key={item} className="flex items-center space-x-2 mb-2">
                 <input type="checkbox" id={item} />
-                <label htmlFor={item} className="ml-2">{item}</label>
-              </div>
+                <span>{item}</span>
+              </label>
+            ))}
+          </div>
+
+           {/* Categories */}
+           <div className="mb-6">
+            <h3 className="font-medium mb-2">Categories</h3>
+            {["Town House", "Flagship", "Home", "Hotel Rooms"].map((item) => (
+              <label key={item} className="flex items-center space-x-2 mb-2">
+                <input type="checkbox" id={item} />
+                <span>{item}</span>
+              </label>
             ))}
           </div>
 
           {/* Accommodation Type */}
           <div className="mb-6">
-            <h3 className="font-medium">Accommodation Type</h3>
-            {["Hotel", "Guest House", "Resort"].map(item => (
-              <div key={item} className="flex items-center">
+            <h3 className="font-medium mb-2">Accommodation Type</h3>
+            {["Hotel", "Guest House"].map((item) => (
+              <label key={item} className="flex items-center space-x-2 mb-2">
                 <input type="checkbox" id={item} />
-                <label htmlFor={item} className="ml-2">{item}</label>
-              </div>
+                <span>{item}</span>
+              </label>
             ))}
           </div>
 
-            {/* Hotel Facilities */}
-            <div className="mb-6">
-            <h3 className="font-medium">Hotel Facilities</h3>
-            {["Seating area", "king Sized Bed", "Queen Sized Bed","Swimming Pool"].map(item => (
-              <div key={item} className="flex items-center">
+          {/* Hotel Facilities */}
+          <div className="mb-6">
+            <h3 className="font-medium mb-2">Hotel Facilities</h3>
+            {["Seating area", "King Sized Bed", "Queen Sized Bed", "Swimming Pool"].map((item) => (
+              <label key={item} className="flex items-center space-x-2 mb-2">
                 <input type="checkbox" id={item} />
-                <label htmlFor={item} className="ml-2">{item}</label>
-              </div>
+                <span>{item}</span>
+              </label>
             ))}
           </div>
 
           {/* Check-In Features */}
           <div className="mb-6">
-            <h3 className="font-medium">Check-In Features</h3>
-            {["24x7 Check-In", "Free Cancellation", "No ID Required"].map(item => (
-              <div key={item} className="flex items-center">
+            <h3 className="font-medium mb-2">Check-In Features</h3>
+            {["24x7 Check-In", "Free Cancellation", "No ID Required"].map((item) => (
+              <label key={item} className="flex items-center space-x-2 mb-2">
                 <input type="checkbox" id={item} />
-                <label htmlFor={item} className="ml-2">{item}</label>
-              </div>
+                <span>{item}</span>
+              </label>
             ))}
           </div>
         </div>
 
-        {/* Main Content: Hotel Cards */}
-        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Hotel Cards */}
+         <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
           {hotels.map((hotel, index) => (
             <HotelCard key={index} hotel={hotel} />
           ))}
         </div>
+      
+
       </div>
     </div>
   );
 };
 
 export default HotelListPage;
+

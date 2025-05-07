@@ -19,7 +19,7 @@ const Footer = () => {
             alt="First HomeStay Logo"
             className="w-16 mb-4"
           />
-          <p className="text-sm text-white"> <span className="text-black font-bold">First</span> <span className="text-red-700 font-bold">Home</span> <span className="text-green-950 font-bold">Stay</span></p>
+          <p className="text-sm text-white"> <span className="text-black font-bold">First</span> <span className="text-green-700 font-bold">Home</span> <span className="text-red-950 font-bold">Stay</span></p>
         </div>
 
         {/* Contact Section */}
@@ -154,7 +154,7 @@ const Footer = () => {
       </div>
 
       <div className="text-center py-4 text-sm text-white border-t">
-        Copyright©2025 <span className="text-black font-bold">First</span> <span className="text-red-700 font-bold">Home</span> <span className="text-green-950 font-bold">Stay</span> .  All rights reserved.
+        Copyright©2025 <span className="text-black font-bold">First</span> <span className="text-green-700 font-bold">Home</span> <span className="text-red-950 font-bold">Stay</span> .  All rights reserved.
       </div>
     </footer>
   );

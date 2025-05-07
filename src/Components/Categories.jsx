@@ -7,14 +7,14 @@ export const categories = [
   {
     image: "/images/h1.jpg",
     rating: 4.5,
-    price: 69,
+    price: 10,
     unit: "night",
     hotel: "Hotels in Delhi",
   },
   {
     image: "/images/h2.jpg",
     rating: 3.2,
-    price: 49,
+    price: 15,
     unit: "trip",
     hotel: "Hotels in Hyderabad",
   },
@@ -126,3 +126,4 @@ const Categories = () => {
 };
 
 export default Categories;
+

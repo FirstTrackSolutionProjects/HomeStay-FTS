@@ -62,7 +62,7 @@ const Navbar = () => {
             <Link to="/mybooking" className="block px-3 py-2 rounded hover:bg-white/40" onClick={closeMenu}>📘 My Booking</Link>
             <Link to="/location" className="block px-3 py-2 rounded hover:bg-white/40" onClick={closeMenu}>📌 Your Location</Link>
             <Link to="/business" className="block px-3 py-2 rounded hover:bg-white/40" onClick={closeMenu}> 💼 Business Plan</Link>
-            <Link to="/personal-account" className="block px-3 py-2 rounded hover:bg-white/40" onClick={closeMenu}>👤 Personal Account</Link>
+          
             <Link to="/contactus" className="block px-3 py-2 rounded hover:bg-white/40" onClick={closeMenu}>☎️ Contact Us</Link>
             <Link to="/partner" className="block px-3 py-2 rounded hover:bg-white/40" onClick={closeMenu}>🤝 Partner</Link>
             <Link to="/sign-in" className="block px-3 py-2 rounded hover:bg-white/40" onClick={closeMenu}>🔐 Sign In</Link>

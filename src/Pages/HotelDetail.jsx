@@ -725,7 +725,7 @@ import { Card, CardContent } from "../Components/ui/Card";
 import { Button } from "../Components/ui/Button";
 import { Star } from "lucide-react";
 
-export default function HotelDetailsPage() {
+export default function HotelDetailPage() {
   return (
     <div className="p-6 max-w-5xl mx-auto space-y-6">
       {/* Image Carousel Placeholder */}
@@ -832,3 +832,4 @@ export default function HotelDetailsPage() {
     </div>
   );
 }
+

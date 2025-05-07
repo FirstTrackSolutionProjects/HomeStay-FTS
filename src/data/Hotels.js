@@ -58,22 +58,32 @@
   
 //   export default hotels;
 
-// src/data/hotels.js
+
 export const hotels = [
   {
     id: 1,
     name: "Hotel Shanti Palace",
     location: "Paharganj, Delhi",
-    price: 5727,
-    rating: 4.3,
+    price: 2000,
+   
+    stars: 4,
     image: "/images/h1.jpg"
   },
   {
     id: 2,
     name: "Hotel Classic Deluxe",
     location: "Connaught Place, Delhi",
-    price: 4899,
-    rating: 3.7,
+    price: 3000,
+   
+    stars: 5,
     image: "/images/h2.jpg"
-  }
+  },
+  {
+    id: 3,
+    name: "Hotel Royal Residency",
+    location: "Karol Bagh, Hyderabad",
+    price: 2500,
+    stars: 4,
+    image: "/images/h3.jpg"
+  },
 ];
