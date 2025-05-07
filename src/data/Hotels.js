@@ -86,4 +86,12 @@ export const hotels = [
     stars: 4,
     image: "/images/h3.jpg"
   },
+  {
+    id: 4,
+    name: "Hotel Royal Residency",
+    location: "Karol Bagh, Hyderabad",
+    price: 2500,
+    stars: 4,
+    image: "/images/h3.jpg"
+  },
 ];
