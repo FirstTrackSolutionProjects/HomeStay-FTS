@@ -722,7 +722,8 @@
 
 import React from "react";
 import { Card, CardContent } from "../Components/ui/Card";
-import { Button } from "../Components/ui/Button";
+import Button from "../components/ui/Button";
+
 import { Star } from "lucide-react";
 
 export default function HotelDetailPage() {
