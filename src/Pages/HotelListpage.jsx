@@ -437,109 +437,9 @@
 
 // export default HotelListPage;
 
-// import React from "react";
-// import HotelCard from "../Components/HotelCard";
-// import { hotels } from "../data/hotels";
-
-
-// const HotelListPage = () => {
-//   return (
-//     <div className="min-h-screen bg-gray-50">
-//       <h1 className="text-3xl font-bold text-center my-8">Available Hotels</h1>
-//       <div className="flex flex-col sm:flex-row justify-between items-center p-4 bg-white shadow">
-//         <input
-//           type="text"
-//           placeholder="Search hotels..."
-//           className="w-full sm:w-1/2 px-4 py-2 border rounded mb-4 sm:mb-0"
-//         />
-//         <select className="border p-2 rounded w-full sm:w-auto">
-//           <option>Sort by Popularity</option>
-//           <option>Price Low to High</option>
-//           <option>Rating</option>
-//         </select>
-//       </div>
-
-//       {/* Filters + Hotel Cards */}
-//       <div className="flex flex-col-reverse sm:flex-row gap-4 p-4">
-//         {/* Sidebar for Filters */}
-//         <div className="w-full sm:w-1/4 bg-white p-4 rounded-lg shadow mb-4 sm:mb-0">
-//           <h2 className="text-xl font-semibold mb-4">Filters</h2>
-
-//           {/* Price Range */}
-//           <div className="mb-6">
-//             <h3 className="font-medium">Price Range</h3>
-//             <input
-//               type="range"
-//               min="500"
-//               max="10000"
-//               step="500"
-//               className="w-full mt-3"
-//             />
-//             <p className="text-sm mt-1 text-gray-600">Adjust price range</p>
-//           </div>
-
-//           {/* Category  Collection */}
-//           <div className="mb-6">
-//             <h3 className="font-medium">Collections</h3>
-//             {["Couple Friendly", "Business", "Luxury", "Budget"].map(item => (
-//               <div key={item} className="flex items-center">
-//                 <input type="checkbox" id={item} />
-//                 <label htmlFor={item} className="ml-2">{item}</label>
-//               </div>
-//             ))}
-//           </div>
-
-//           {/* Accommodation Type */}
-//           <div className="mb-6">
-//             <h3 className="font-medium">Accommodation Type</h3>
-//             {["Hotel", "Guest House", "Resort"].map(item => (
-//               <div key={item} className="flex items-center">
-//                 <input type="checkbox" id={item} />
-//                 <label htmlFor={item} className="ml-2">{item}</label>
-//               </div>
-//             ))}
-//           </div>
-
-//             {/* Hotel Facilities */}
-//             <div className="mb-6">
-//             <h3 className="font-medium">Hotel Facilities</h3>
-//             {["Seating area", "king Sized Bed", "Queen Sized Bed","Swimming Pool"].map(item => (
-//               <div key={item} className="flex items-center">
-//                 <input type="checkbox" id={item} />
-//                 <label htmlFor={item} className="ml-2">{item}</label>
-//               </div>
-//             ))}
-//           </div>
-
-//           {/* Check-In Features */}
-//           <div className="mb-6">
-//             <h3 className="font-medium">Check-In Features</h3>
-//             {["24x7 Check-In", "Free Cancellation", "No ID Required"].map(item => (
-//               <div key={item} className="flex items-center">
-//                 <input type="checkbox" id={item} />
-//                 <label htmlFor={item} className="ml-2">{item}</label>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-
-//         {/* Main Content: Hotel Cards */}
-//         <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-//           {hotels.map((hotel, index) => (
-//             <HotelCard key={index} hotel={hotel} />
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default HotelListPage;
-
-
 import React, { useState } from "react";
 import HotelCard from "../Components/HotelCard";
-import { hotels } from "../data/hotels";
+import {hotels}  from "../data/hotels";
 
 
 const HotelListPage = () => {
@@ -674,4 +574,5 @@ const HotelListPage = () => {
 };
 
 export default HotelListPage;
+
 
