@@ -118,7 +118,7 @@ const ContactUs = () => {
             <FaHotel className="text-orange-500 mt-1 mr-3" />
             <div>
               <span className="font-semibold text-purple-700">About Us:</span><br />
-              FirstHomeStay is a premier hotel booking platform committed to providing seamless and reliable travel experiences across India. Our mission is to make bookings hassle-free with a user-friendly interface and exceptional customer support.
+              <span className="font-bold text-black">First Home Stay</span> is a premier hotel booking platform committed to providing seamless and reliable travel experiences across India. Our mission is to make bookings hassle-free with a user-friendly interface and exceptional customer support.
             </div>
           </div>
         </div>

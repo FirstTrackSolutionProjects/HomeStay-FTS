@@ -42,10 +42,17 @@ const Policy = () => {
           title="5. Changes to This Policy"
           content="We may update this policy occasionally. Any changes will be posted on this page with an updated date."
         />
-        <PolicySection
+       <PolicySection
           title="6. Contact Us"
-          content="For questions about this policy, please contact us at: [Insert Email Address] or [Insert Phone Number]."
-        />
+          content={
+            <>
+            For questions about this policy, please contact us at:{" "}
+            <strong>support@firsthomestay.com</strong> or{" "}
+            <strong>+91-9040170727</strong>.
+            </>
+          } 
+          />
+
       </div>
     </div>
   );
