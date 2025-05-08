@@ -51,7 +51,8 @@ const App = () => {
         <Route path="/hotel/detail/:hotelId" element={<HotelDetail />} />
       
         <Route path="/offer/:offerId" element={<OfferHotels />} />
-        <Route path="/hotel/offer/:hotelName" element={<OfferDetails />} />
+        <Route path="/offers/:location/:hotelName" element={<OfferDetails />} />
+
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
         {/* <Route path="/payment" element={<Payment />} />  */}

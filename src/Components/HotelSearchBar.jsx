@@ -57,38 +57,41 @@ export default function HotelSearchBar() {
         </div>
 
         {/* Date Picker */}
-        <div className="flex items-center border rounded-md p-2 w-full mb-2 md:mb-0 md:w-1/3">
-          <FaCalendarAlt className="text-gray-500 mr-2" />
-          <DatePicker
-            selectsRange
-            startDate={startDate}
-            endDate={endDate}
-            onChange={(update) => setDateRange(update)}
-            monthsShown={2}
-            dateFormat="EEE, d MMM"
-            placeholderText="Select date range"
-            className="w-full outline-none bg-transparent"
-            calendarClassName="!border !rounded-lg !p-4"
-            dayClassName={(date) => {
-              const isInRange =
-                startDate && endDate && date > startDate && date < endDate;
-              const isStart =
-                startDate &&
-                format(date, "yyyy-MM-dd") === format(startDate, "yyyy-MM-dd");
-              const isEnd =
-                endDate &&
-                format(date, "yyyy-MM-dd") === format(endDate, "yyyy-MM-dd");
+        <div className="flex w-full mb-2 md:mb-0 md:w-1/3 gap-2">
+          {/* Check-in */}
+          <div className="flex items-center border-2 border-gray-400 rounded-md p-2 w-1/2 bg-white">
+            <FaCalendarAlt className="text-gray-500 mr-2" />
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setDateRange([date, endDate])}
+              selectsStart
+              startDate={startDate}
+              endDate={endDate}
+              placeholderText="Check-in"
+              dateFormat="EEE, d MMM"
+              className="w-full outline-none bg-transparent text-gray-800"
+              calendarClassName="!border !rounded-lg !p-4"
+            />
+          </div>
 
-              if (isStart || isEnd) {
-                return "!bg-red-600 !text-white";
-              }
-              if (isInRange) {
-                return "!bg-red-400 !text-white";
-              }
-              return "";
-            }}
-          />
+          {/* Check-out */}
+          <div className="flex items-center border-2 border-gray-400 rounded-md p-2 w-1/2 bg-white">
+            <FaCalendarAlt className="text-gray-500 mr-2" />
+            <DatePicker
+              selected={endDate}
+              onChange={(date) => setDateRange([startDate, date])}
+              selectsEnd
+              startDate={startDate}
+              endDate={endDate}
+              placeholderText="Check-out"
+              minDate={startDate}
+              dateFormat="EEE, d MMM"
+              className="w-full outline-none bg-transparent text-gray-800"
+              calendarClassName="!border !rounded-lg !p-4"
+            />
+          </div>
         </div>
+
 
         {/* Guests */}
         <div className="relative w-full md:w-1/4 mb-2 md:mb-0">

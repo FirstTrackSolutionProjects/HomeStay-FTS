@@ -19,8 +19,16 @@ const Footer = () => {
             alt="First HomeStay Logo"
             className="w-16 mb-4"
           />
-          <p className="text-sm text-white"> <span className="text-black font-bold">First</span> <span className="text-green-700 font-bold">Home</span> <span className="text-red-950 font-bold">Stay</span></p>
+         <p className="text-sm text-white">
+          <span className="text-black font-bold">First</span>{" "}
+          <span className="text-green-700 font-bold">Home</span>{" "}
+          <span className="text-red-950 font-bold">Stay</span>
+          </p>
+          <p className="text-sm text-gray-200 mt-2">
+            Experience comfort, convenience, and a touch of home at First Home Stay. Whether you're traveling for business or leisure, our spaces are designed to give you a relaxing and memorable stay.
+          </p>
         </div>
+
 
         {/* Contact Section */}
         <div>
@@ -132,7 +140,6 @@ const Footer = () => {
             <li><Link to="/aboutus" className="hover:text-yellow-600">About Us</Link></li>
             <li><Link to="/blogs" className="hover:text-yellow-600">Blogs</Link></li>
             <li><Link to="/support" className="hover:text-yellow-600">Support</Link></li>
-            <li><Link to="/contactus" className="hover:text-yellow-600">Contact Us</Link></li>
             <li><Link to="/partner" className="hover:text-yellow-600">Partner</Link></li>
           </ul>
         </div>

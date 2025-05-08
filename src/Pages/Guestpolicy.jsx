@@ -75,10 +75,12 @@ const GuestPolicy = () => {
             <h5 className="text-base font-semibold text-orange-700">
               6. Cancellations and Refunds
             </h5>
-            <p className="mt-1">
-              Cancellation policies vary. Refunds, if applicable, will be
-              processed within <strong>[Insert days]</strong> business days.
-            </p>
+            <ul className="list-disc ml-6 mt-1 space-y-1">
+             
+              <li>Cancellations are accepted only if requested at least 48 hours before the check-in time.</li>
+              <li>Refundable cancellations will be processed within 7–10 business days.</li>
+              
+            </ul>
           </div>
 
           <div>
