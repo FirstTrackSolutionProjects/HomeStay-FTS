@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export const offers = [
-  { id: "Goa - Beach Resorts", title: "Goa - Beach Resorts", price: "₹2,000 /night", image: "Goa/goa.jpg", offer: "20% Off" },
-  { id: "Udaipur - Luxury Lake Resorts", title: "Udaipur - Luxury Lake Resorts", price: "₹1,500 /night", image: "Udaipur/udaipur.jpg", offer: "Limited Time Deal" },
-  { id: "Manali - Summer Mountain Retreats", title: "Manali - Summer Mountain Retreats", price: "₹1,900 /night", image: "Manali/manali.jpg", offer: "Free Breakfast" },
+  { id: "Goa - Beach Resorts", title: "Goa - Beach Resorts", price: "₹2,000 /night", image: "City/Goa/goa.jpg", offer: "20% Off" },
+  { id: "Udaipur - Luxury Lake Resorts", title: "Udaipur - Luxury Lake Resorts", price: "₹1,500 /night", image: "City/Udaipur/udaipur.jpg", offer: "Limited Time Deal" },
+  { id: "Manali - Summer Mountain Retreats", title: "Manali - Summer Mountain Retreats", price: "₹1,900 /night", image: "City/Manali/manali.jpg", offer: "Free Breakfast" },
 ];
 
 const SpecialOffers = () => {

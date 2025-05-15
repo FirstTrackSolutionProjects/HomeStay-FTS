@@ -124,12 +124,12 @@ const Footer = () => {
         <div>
           <h4 className="text-lg font-semibold mb-2 text-yellow-500">Hotels Near Me</h4>
           <ul className="space-y-1 text-sm text-gray-200">
-            <li><Link to="/manali" className="hover:text-yellow-600">Hotels in Manali</Link></li>
-            <li><Link to="/nainital" className="hover:text-yellow-600">Hotels in Nainital</Link></li>
-            <li><Link to="/agra" className="hover:text-yellow-600">Hotels in Agra</Link></li>
-            <li><Link to="/haridwar" className="hover:text-yellow-600">Hotels in Haridwar</Link></li>
-            <li><Link to="/goa" className="hover:text-yellow-600">Hotels in Goa</Link></li>
-            <li><Link to="/mysore" className="hover:text-yellow-600">Hotels in Mysore</Link></li>
+            <li><a href="#manali" className="hover:text-yellow-600">Hotels in Manali</a></li>
+            <li><a href="#nainital" className="hover:text-yellow-600">Hotels in Nainital</a></li>
+            <li><a href="#agra" className="hover:text-yellow-600">Hotels in Agra</a></li>
+            <li><a href="#haridwar" className="hover:text-yellow-600">Hotels in Haridwar</a></li>
+            <li><a href="#goa" className="hover:text-yellow-600">Hotels in Goa</a></li>
+            <li><a href="#mysore" className="hover:text-yellow-600">Hotels in Mysore</a></li>
           </ul>
         </div>
 

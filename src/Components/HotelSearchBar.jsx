@@ -10,9 +10,15 @@ export default function HotelSearchBar() {
   const [startDate, endDate] = dateRange;
   const [guestDropdownOpen, setGuestDropdownOpen] = useState(false);
 
-  const [rooms, setRooms] = useState([{ adults: 1, children: 0 }]);
+  const [rooms, setRooms] = useState([
+    { adults: 1, children: 0, male: 0, female: 0 },
+  ]);
 
-  const totalGuests = rooms.reduce((sum, room) => sum + room.adults + room.children, 0);
+  const totalGuests = rooms.reduce(
+    (sum, room) =>
+      sum + room.adults + room.children + room.male + room.female,
+    0
+  );
 
   const toggleGuestDropdown = () => setGuestDropdownOpen(!guestDropdownOpen);
 
@@ -22,7 +28,11 @@ export default function HotelSearchBar() {
         i === index
           ? {
               ...room,
-              [type]: Math.max(type === "adults" ? 1 : 0, room[type] + delta),
+              [type]:
+                Math.max(
+                  type === "adults" ? 1 : 0,
+                  room[type] + delta
+                ),
             }
           : room
       )
@@ -30,14 +40,17 @@ export default function HotelSearchBar() {
   };
 
   const addRoom = () => {
-    setRooms([...rooms, { adults: 1, children: 0 }]);
+    setRooms([
+      ...rooms,
+      { adults: 1, children: 0, male: 0, female: 0 },
+    ]);
   };
+
   const deleteRoom = (index) => {
     if (rooms.length > 1) {
       setRooms((prevRooms) => prevRooms.filter((_, i) => i !== index));
     }
   };
-  
 
   return (
     <div className="bg-gradient-to-r from-gray-400 to-gray-900 py-10 px-4 text-white mt-5">
@@ -51,7 +64,7 @@ export default function HotelSearchBar() {
           <FaMapMarkerAlt className="text-gray-500 mr-2" />
           <input
             type="text"
-            placeholder="Enter city or area"
+            placeholder="Enter city, location or hotels"
             className="w-full outline-none"
           />
         </div>
@@ -92,7 +105,6 @@ export default function HotelSearchBar() {
           </div>
         </div>
 
-
         {/* Guests */}
         <div className="relative w-full md:w-1/4 mb-2 md:mb-0">
           <div
@@ -111,30 +123,31 @@ export default function HotelSearchBar() {
             <div className="absolute z-10 w-full bg-white rounded-md shadow-lg mt-2 p-4 text-sm text-gray-800">
               {rooms.map((room, index) => (
                 <div key={index} className="border rounded-md p-3 mb-3">
-                <div className="flex justify-between mb-2 font-semibold">
-                <div className="flex items-center">
-                  <span>Room {index + 1}</span>
-                    {rooms.length > 1 && (
-                  <button
-                    onClick={() => deleteRoom(index)}
-                    className="text-red-500 text-xs hover:underline ml-4"
-                      >
-                    Remove
-                  </button>
-                    )}
-                </div>
-                  <span>
-                  {room.adults + room.children} Guest
-                  {room.adults + room.children > 1 ? "s" : ""}
-                  </span>
-                </div>
-
+                  <div className="flex justify-between mb-2 font-semibold">
+                    <div className="flex items-center">
+                      <span>Room {index + 1}</span>
+                      {rooms.length > 1 && (
+                        <button
+                          onClick={() => deleteRoom(index)}
+                          className="text-red-500 text-xs hover:underline ml-4"
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
+                    <span>
+                      {room.adults + room.children + room.male + room.female}{" "}
+                      Guest{room.adults + room.children + room.male + room.female > 1 ? "s" : ""}
+                    </span>
+                  </div>
 
                   {/* Adults */}
                   <div className="flex justify-between items-center mb-2">
                     <div>
                       <div className="font-medium">Adults</div>
-                      <div className="text-gray-500 text-xs">Ages 5 or above</div>
+                      <div className="text-gray-500 text-xs">
+                        Ages 18 or above
+                      </div>
                     </div>
                     <div className="flex items-center space-x-2">
                       <button
@@ -155,14 +168,16 @@ export default function HotelSearchBar() {
                   </div>
 
                   {/* Children */}
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between items-center mb-2">
                     <div>
                       <div className="font-medium">Children</div>
                       <div className="text-gray-500 text-xs">Ages 0–5</div>
                     </div>
                     <div className="flex items-center space-x-2">
                       <button
-                        onClick={() => updateRoomCount(index, "children", -1)}
+                        onClick={() =>
+                          updateRoomCount(index, "children", -1)
+                        }
                         className="w-8 h-8 border rounded flex items-center justify-center hover:bg-gray-100"
                         disabled={room.children <= 0}
                       >
@@ -170,7 +185,51 @@ export default function HotelSearchBar() {
                       </button>
                       <span>{room.children}</span>
                       <button
-                        onClick={() => updateRoomCount(index, "children", 1)}
+                        onClick={() =>
+                          updateRoomCount(index, "children", 1)
+                        }
+                        className="w-8 h-8 border rounded flex items-center justify-center hover:bg-gray-100"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Gender - Male */}
+                  <div className="flex justify-between items-center mb-2">
+                    <div className="font-medium">Male</div>
+                    <div className="flex items-center space-x-2">
+                      <button
+                        onClick={() => updateRoomCount(index, "male", -1)}
+                        className="w-8 h-8 border rounded flex items-center justify-center hover:bg-gray-100"
+                        disabled={room.male <= 0}
+                      >
+                        −
+                      </button>
+                      <span>{room.male}</span>
+                      <button
+                        onClick={() => updateRoomCount(index, "male", 1)}
+                        className="w-8 h-8 border rounded flex items-center justify-center hover:bg-gray-100"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Gender - Female */}
+                  <div className="flex justify-between items-center">
+                    <div className="font-medium">Female</div>
+                    <div className="flex items-center space-x-2">
+                      <button
+                        onClick={() => updateRoomCount(index, "female", -1)}
+                        className="w-8 h-8 border rounded flex items-center justify-center hover:bg-gray-100"
+                        disabled={room.female <= 0}
+                      >
+                        −
+                      </button>
+                      <span>{room.female}</span>
+                      <button
+                        onClick={() => updateRoomCount(index, "female", 1)}
                         className="w-8 h-8 border rounded flex items-center justify-center hover:bg-gray-100"
                       >
                         +
