@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import HeroSection from "../Components/HeroSection";
 import HotelSearchBar from "../Components/HotelSearchBar";
 
-
-
 import CityScroller from "../Components/CityScroller";
 import Categories from "../Components/Categories";
 import SpecialOffers from "../Components/SpecialOffers";
@@ -16,7 +14,6 @@ const HomePage = () => {
         <div className="app-container">
           <HotelSearchBar />
           
-       
           <CityScroller />
           <Categories />
          <SpecialOffers />

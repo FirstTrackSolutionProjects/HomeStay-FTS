@@ -3,9 +3,12 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import Navbar from "./Components/Navbar";
 import Home from "./Pages/HomePage";
 
-
-import HotelDetail from "./Pages/HotelDetail";
-import HotelListpage from "./Pages/HotelListpage";
+import CityHotels from "./Pages/CityHotels";
+import HotelDetails from "./Pages/HotelDetails";
+import BookingPage from "./Pages/BookingPage";
+import PaymentPage from "./Pages/PaymentPage";
+// import HotelDetail from "./Pages/HotelDetail";
+// import HotelListpage from "./Pages/HotelListpage";
 import OfferHotels from "./Pages/OfferHotels";
 import OfferDetails from "./Pages/OfferDetails";
 
@@ -37,7 +40,7 @@ const ScrollToTop = () => {
     window.scrollTo(0, 0);  // Scroll to top on location change
   }, [location.pathname]); // Dependency array ensures it runs on route change
 
-  return null;  // This component doesn’t render anything, it just handles scroll
+  return null;  
 };
 
 const App = () => {
@@ -47,11 +50,18 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} /> 
-        <Route path="/hotels/:locationId" element={<HotelListpage />} />
-        <Route path="/hotel/detail/:hotelId" element={<HotelDetail />} />
+
+       
+        <Route path="/city/:cityName" element={<CityHotels />} />
+        <Route path="/city/hotel/:hotelId" element={<HotelDetails />} />
+        <Route path="/booking/:cityName/:hotelId" element={<BookingPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        {/* <Route path="/hotels/:locationId" element={<HotelListpage />} />
+        <Route path="/hotel/detail/:hotelId" element={<HotelDetail />} /> */}
       
-        <Route path="/offer/:offerId" element={<OfferHotels />} />
-        <Route path="/offers/:location/:hotelName" element={<OfferDetails />} />
+        <Route path="/offer/:city" element={<OfferHotels />} />
+       
+        <Route path="/offer-details/:id" element={<OfferDetails />} />
 
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
