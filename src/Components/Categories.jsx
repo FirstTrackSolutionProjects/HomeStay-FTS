@@ -30,10 +30,10 @@ export const categories = [
     rating: 4.7,
     price: 299,
     unit: "session",
-    hotel: "Hotels in Bangalore",
+    hotel: "Hotels in Banglore",
   },
   {
-    image: "City/bhubaneswar/bhubaneswar.jpeg",
+    image: "City/Bhubaneswar/bhubaneswar.jpeg",
     rating: 3.9,
     price: 19,
     unit: "month",
@@ -89,11 +89,11 @@ export const categories = [
     hotel: "Hotels in Ranchi",
   },
   {
-    image: "City/Surat/surat.jpeg",
+    image: "City/Puri/puri.jpeg",
     rating: 5.0,
     price: 59,
     unit: "suite",
-    hotel: "Hotels in Surat",
+    hotel: "Hotels in Puri",
   },
 ];
 

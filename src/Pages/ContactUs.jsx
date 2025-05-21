@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaGlobeAsia, FaHotel } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
+import {
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaGlobeAsia,
+  FaHotel,
+} from "react-icons/fa";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -7,6 +14,9 @@ const ContactUs = () => {
     email: "",
     message: ""
   });
+
+  const location = useLocation();
+  const errorMessage = location.state?.errorMessage;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,9 +28,7 @@ const ContactUs = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can add form submission logic here
     console.log("Form submitted:", formData);
-    // Reset form after submission
     setFormData({
       name: "",
       email: "",
@@ -28,12 +36,29 @@ const ContactUs = () => {
     });
     alert("Thank you for reaching out! We'll get back to you soon.");
   };
+ 
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 to-blue-300 flex flex-col items-center justify-center p-6 sm:p-10">
       <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-8 space-y-6 border border-gray-200">
         <h1 className="text-4xl font-bold text-center text-purple-700 drop-shadow-sm mb-2">Contact Us</h1>
-        <p className="text-center text-gray-600 mb-6">We’d love to hear from you. Reach out for support or inquiries!</p>
+        <p className="text-center text-gray-600 mb-4">We’d love to hear from you. Reach out for support or inquiries!</p>
+
+        {/* Error Banner if redirected after booking failure */}
+        {errorMessage && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <strong className="font-bold">Booking Failed:</strong> <span>{errorMessage}</span>
+          </div>
+        )}
+
+        {errorMessage && (
+          <button
+            onClick={() => window.history.back()}
+            className="mb-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          >
+            Go Back & Try Again
+          </button>
+        )}
 
         {/* Contact Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -81,6 +106,7 @@ const ContactUs = () => {
           </button>
         </form>
 
+        {/* Static Contact Info */}
         <div className="space-y-4 text-gray-800 text-sm sm:text-base mt-6">
           <div className="flex items-start">
             <FaMapMarkerAlt className="text-pink-600 mt-1 mr-3" />

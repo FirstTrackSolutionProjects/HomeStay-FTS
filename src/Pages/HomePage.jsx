@@ -4,6 +4,7 @@ import HeroSection from "../Components/HeroSection";
 import HotelSearchBar from "../Components/HotelSearchBar";
 
 import CityScroller from "../Components/CityScroller";
+import Nearby from "../Components/NearBy";
 import Categories from "../Components/Categories";
 import SpecialOffers from "../Components/SpecialOffers";
 import Review from "../Components/Review";
@@ -15,6 +16,7 @@ const HomePage = () => {
           <HotelSearchBar />
           
           <CityScroller />
+          <Nearby/>
           <Categories />
          <SpecialOffers />
          <Review/> 

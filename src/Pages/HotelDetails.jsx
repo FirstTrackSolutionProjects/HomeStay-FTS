@@ -6,7 +6,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { CheckCircle, Star } from "lucide-react";
-import roomData from "../data/roomData";
+import roomData from "../data/roomdata";
 
 const HotelDetails = () => {
   const { hotelId } = useParams();
@@ -105,83 +105,48 @@ const HotelDetails = () => {
             <p className="text-sm text-gray-700">{hotel.description}</p>
           </div>
 
-          {/* Room Type Selector */}
-          <div className="mb-6 mt-6">
-            <label htmlFor="roomType" className="block mb-2 font-semibold text-lg">
-              Choose Your Room Type
-            </label>
+          {/* Room Selection */}
+          <div className="p-4 max-w-md mx-auto">
+            <h1 className="text-xl font-bold mb-4">Choose Your Room Type</h1>
+
             <select
-              id="roomType"
-              value={selectedRoom ? selectedRoom.type : ""}
-              onChange={(e) => {
-                const room = roomData.find(r => r.type === e.target.value);
-                setSelectedRoom(room);
-              }}
-              className="border rounded p-2 w-full max-w-xs"
+              value={selectedRoom?.type || ""}
+              onChange={(e) =>
+                setSelectedRoom(roomData.find(room => room.type === e.target.value))
+              }
+              className="w-full border p-2 rounded"
             >
-              <option value="" disabled>
-                Select a room type
-              </option>
-              {roomData.map((room) => (
-                <option key={room.type} value={room.type}>
+              <option value="">Select a room type</option>
+              {roomData.map((room, index) => (
+                <option key={index} value={room.type}>
                   {room.type}
                 </option>
               ))}
             </select>
-          </div>
 
-          {/* Room Preview */}
-          {selectedRoom && (
-            <>
-              <div className="border rounded p-4 mb-6 shadow flex flex-col md:flex-row md:items-center md:gap-6 max-w-xl">
+            {selectedRoom && (
+              <div className="mt-4 border rounded p-4 shadow">
+                <h2 className="text-lg font-semibold mb-2">{selectedRoom.type} Room</h2>
                 <img
                   src={selectedRoom.image}
-                  alt={`${selectedRoom.type} room`}
-                  className="w-full md:w-40 h-28 object-cover rounded mb-3 md:mb-0"
+                  alt={selectedRoom.type}
+                  className="w-full h-40 object-cover rounded mb-3"
                 />
-                <div className="flex-1">
-                  <h3 className="font-bold text-xl flex items-center gap-2">
-                    {selectedRoom.type}
-                    <CheckCircle className="text-green-600 w-5 h-5" />
-                  </h3>
-                  <p className="text-gray-700 mt-1">Room size: {selectedRoom.size}</p>
-                  <div className="flex gap-4 mt-2 text-gray-600 text-sm flex-wrap">
-                    {selectedRoom.amenities.map((amenity, idx) => (
-                      <span key={idx} className="flex items-center gap-1">{amenity}</span>
-                    ))}
-                  </div>
-                </div>
-                <div className="text-right mt-3 md:mt-0">
-                  <div className="text-green-600 font-bold text-2xl">
-                    ₹{selectedRoom.price}
-                  </div>
-                  <div className="line-through text-gray-400 text-sm">
-                    ₹{selectedRoom.originalPrice}
-                  </div>
-                  <div className="text-gray-600 text-xs mt-1">+ taxes: ₹{selectedRoom.taxes}</div>
-                </div>
+                <p><strong>Room Size:</strong> {selectedRoom.size}</p>
+                <p><strong>Features:</strong> {selectedRoom.features.join(", ")}</p>
+                <p><strong>Price:</strong> ₹{selectedRoom.discountedPrice}</p>
+                <p><strong>Taxes:</strong> ₹{selectedRoom.taxes}</p>
+                <p className="font-bold mt-2">
+                  Total: ₹{selectedRoom.discountedPrice + selectedRoom.taxes}
+                </p>
               </div>
-
-              
-
-              {/* Room Benefits Section */}
-              <div className="mb-6 max-w-xl">
-                <h3 className="text-lg font-semibold mb-2">Room Benefits</h3>
-                <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
-                  <li>Early Check-in Available</li>
-                  <li>Free Cancellation Till Check-in</li>
-                  <li>24x7 Customer Support</li>
-                  <li>100% Safe & Secure Payment</li>
-                </ul>
-              </div>
-            </>
-          )}
+            )}
+          </div>
 
           {/* Nearby */}
           <div className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">What's nearby?</h2>
             <div className="border p-4 rounded-md">
-              <img src="/nearby-map.png" alt="Map" className="rounded-md mb-3" />
               <div className="space-y-2 text-gray-700 text-sm">
                 <p>🚌 Silk Board Bus Stop - 3km</p>
                 <p>🏥 Jayadeva Hospital - 3.3km</p>

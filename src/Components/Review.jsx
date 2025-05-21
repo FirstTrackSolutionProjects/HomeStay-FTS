@@ -182,7 +182,7 @@ const Review = () => {
   };
 
   return (
-    <div className="mx-auto py-10 px-4 sm:px-6 lg:px-0 max-w-[100%] bg-gradient-to-br from-blue-100 to-green-100 rounded-none lg:rounded-2xl shadow-xl mt-5">
+    <div className="mx-auto py-10 px-4 sm:px-6 lg:px-0 max-w-[80%] bg-gradient-to-br from-blue-100 to-green-100 rounded-none lg:rounded-2xl shadow-xl mt-5">
 
       {/* Reviews Section */}
       <div className="mb-12">

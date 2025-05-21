@@ -9,14 +9,47 @@ const PaymentPage = () => {
   const { fullName, email, mobile, hotel, payableAmount } = state;
   const [paymentMethod, setPaymentMethod] = useState("payAtHotel");
   const [showBanner, setShowBanner] = useState(false);
- 
 
-  const handleBookNow = () => {
+
+const handleBookNow = () => {
+  try {
+    // Simulate random failure (for demo only)
+    const isSuccess = Math.random() > 0.2; // 80% success rate
+
+    if (!isSuccess) {
+      throw new Error("Payment failed. Please contact support.");
+    }
+
+    const newBooking = {
+      orderId: "ORDER" + Date.now(),
+      fullName,
+      email,
+      mobile,
+      hotel,
+      paymentMethod,
+      date: new Date().toLocaleString(),
+    };
+
+    const existing = JSON.parse(localStorage.getItem("myBookings")) || [];
+    localStorage.setItem("myBookings", JSON.stringify([...existing, newBooking]));
+
     setShowBanner(true);
     setTimeout(() => {
       setShowBanner(false);
+      navigate("/mybookings");
     }, 3000);
-  };
+
+  } catch (error) {
+    // Booking failed, redirect to Contact Us
+    navigate("/contact", {
+      state: { 
+          errorMessage: "Booking failed due to: " + error.message
+         }
+    });
+  }
+};
+
+
 
 
 
