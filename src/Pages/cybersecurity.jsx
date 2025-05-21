@@ -2,8 +2,8 @@ import React from 'react';
 
 const PolicySection = ({ title, content }) => {
   return (
-    <div className="bg-white shadow-md rounded-2xl p-6 mb-6 w-full max-w-2xl text-left">
-      <h2 className="text-xl font-bold text-purple-800 mb-4">{title}</h2>
+    <div className="bg-white shadow-xl hover:shadow-2xl transition-shadow duration-300 rounded-2xl p-6 mb-6 w-full max-w-3xl text-left border-l-4 border-orange-500">
+      <h2 className="text-xl font-semibold text-gray-900 mb-3">{title}</h2>
       <p className="text-sm text-gray-700 leading-relaxed">{content}</p>
     </div>
   );
@@ -11,13 +11,16 @@ const PolicySection = ({ title, content }) => {
 
 const CyberSecurity = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center px-4 py-10 bg-gradient-to-b from-white to-gray-100">
+    <div className="min-h-screen flex flex-col items-center px-4 py-12 bg-gradient-to-b from-white to-slate-100">
       {/* Page Header */}
-      <div className="mb-12 text-center">
-        <h1 className="text-4xl font-extrabold">
-          <span className="text-black">Cyber</span>{' '}
-          <span className="text-orange-700">Security</span>
+      <div className="mb-10 text-center">
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
+          <span className="text-gray-900">Cyber</span>{' '}
+          <span className="text-orange-600">Security</span>
         </h1>
+        <p className="mt-4 text-sm md:text-base text-gray-600 max-w-xl mx-auto">
+          Your safety is our top priority. Here's how we protect your data and keep your online experience secure.
+        </p>
       </div>
 
       {/* Policy Sections */}
