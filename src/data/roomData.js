@@ -1,4 +1,4 @@
-const rooms = [
+const roomData = [
   {
     type: "Standard",
     size: "10 sqm",
@@ -16,6 +16,15 @@ const rooms = [
     discountedPrice: 588,
     taxes: 140,
     image: "/images/classic.jpg",
+  },
+   {
+    type: "Deluxe",
+    size: "18 sqm",
+    features: ["AC", "TV", "King Bed", "Balcony", "Mini Bar", "Sofa"],
+    originalPrice: 3000,
+    discountedPrice: 850,
+    taxes: 160,
+    image: "/images/deluxe.jpg",
   },
   {
     type: "Premium",
@@ -37,4 +46,4 @@ const rooms = [
   },
 ];
 
-export default rooms;
+export default roomData;

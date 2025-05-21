@@ -32,6 +32,9 @@ const PartnerForm = () => {
     tradeLicense: "",
     agreement: "",
     fassaiCertificate: "",
+    gstCertificate: "",
+    msmeCertificate: "",
+
   });
 
   const handleChange = (e) => {
@@ -82,11 +85,13 @@ const PartnerForm = () => {
         {/* GST */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <InputField label="GST Number" name="gstNumber" value={formData.gstNumber} onChange={handleChange} />
+           <FileUpload label="Upload GST Certificate" name="gstCertificate" fileName={fileData.gstCertificate} onChange={handleFileChange} />
         </div>
 
         {/* MSME Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <InputField label="MSME Number" name="msmeNumber" value={formData.msmeNumber} onChange={handleChange} />
+           <FileUpload label="Upload MSME Certificate" name="msmeCertificate" fileName={fileData.msmeCertificate} onChange={handleFileChange} />
         </div>
 
         {/* Bank Details */}
