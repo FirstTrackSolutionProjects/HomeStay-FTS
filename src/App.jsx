@@ -48,7 +48,7 @@ const App = () => {
     <Router>
       <ScrollToTop />
       <Navbar />
-     <Routes>
+      <Routes>
         <Route path="/" element={<Home />} />
 
         <Route path="/mybookings" element={<MyBookings />} />

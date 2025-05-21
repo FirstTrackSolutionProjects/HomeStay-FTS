@@ -17,6 +17,15 @@ const roomData = [
     taxes: 140,
     image: "/images/classic.jpg",
   },
+   {
+    type: "Deluxe",
+    size: "18 sqm",
+    features: ["AC", "TV", "King Bed", "Balcony", "Mini Bar", "Sofa"],
+    originalPrice: 3000,
+    discountedPrice: 850,
+    taxes: 160,
+    image: "/images/deluxe.jpg",
+  },
   {
     type: "Premium",
     size: "20 sqm",
