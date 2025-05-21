@@ -78,7 +78,7 @@ const App = () => {
         <Route path="/security-awareness" element={<CyberSecurityAwareness />} />
         <Route path="/disclosure" element={<ResponsibleDisclosure />} />
       </Routes>
-      <Footer />
+      <Footer/>
     </Router>
   );
 };
