@@ -6,7 +6,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { CheckCircle, Star } from "lucide-react";
-import roomData from "../data/roomdata";
+import roomData from "../data/roomData";
 
 const HotelDetails = () => {
   const { hotelId } = useParams();
