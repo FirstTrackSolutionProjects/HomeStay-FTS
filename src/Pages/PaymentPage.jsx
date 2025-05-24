@@ -30,13 +30,13 @@ const handleBookNow = () => {
       date: new Date().toLocaleString(),
     };
 
-    const existing = JSON.parse(localStorage.getItem("myBookings")) || [];
-    localStorage.setItem("myBookings", JSON.stringify([...existing, newBooking]));
+    const existing = JSON.parse(localStorage.getItem("myBooking")) || [];
+    localStorage.setItem("myBooking", JSON.stringify([...existing, newBooking]));
 
     setShowBanner(true);
     setTimeout(() => {
       setShowBanner(false);
-      navigate("/mybookings");
+      navigate("/mybooking");
     }, 3000);
 
   } catch (error) {
