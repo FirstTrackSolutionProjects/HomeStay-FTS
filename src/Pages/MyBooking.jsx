@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { FaReceipt, FaHotel, FaMoneyBillWave, FaClock } from "react-icons/fa";
 
-const MyBookings = () => {
-  const [bookings, setBookings] = useState([]);
+const MyBooking = () => {
+  const [booking, setBooking] = useState([]);
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("myBookings")) || [];
-    setBookings(data);
+    const data = JSON.parse(localStorage.getItem("myBooking")) || [];
+    setBooking(data);
   }, []);
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl font-bold text-purple-800 mb-6">My Bookings</h2>
+        <h2 className="text-3xl font-bold text-purple-800 mb-6">My Booking</h2>
 
-        {bookings.length === 0 ? (
-          <p className="text-gray-600 text-lg">No bookings yet.</p>
+        {booking.length === 0 ? (
+          <p className="text-gray-600 text-lg">No booking yet.</p>
         ) : (
           <ul className="space-y-6">
-            {bookings.map((b, index) => (
+            {booking.map((b, index) => (
               <li
                 key={index}
                 className="bg-white border border-gray-200 rounded-xl shadow-sm p-5 hover:shadow-md transition-all"
@@ -64,4 +64,4 @@ const MyBookings = () => {
   );
 };
 
-export default MyBookings;
+export default MyBooking;

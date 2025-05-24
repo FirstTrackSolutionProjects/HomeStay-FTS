@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 
-import MyBookings from "./Pages/MyBooking";
+import MyBooking from "./Pages/MyBooking";
 
 import Home from "./Pages/HomePage";
 import CityHotels from "./Pages/CityHotels";
@@ -51,7 +51,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
 
-        <Route path="/mybookings" element={<MyBookings />} />
+        <Route path="/mybooking" element={<MyBooking />} />
 
         <Route path="/city/:cityName" element={<CityHotels />} />
         <Route path="/city/hotel/:hotelId" element={<HotelDetails />} />

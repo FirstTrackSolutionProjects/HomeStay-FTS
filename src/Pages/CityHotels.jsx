@@ -71,7 +71,7 @@ const CityHotels = () => {
 
         <div>
           <h4 className="font-semibold mb-2">Price Range</h4>
-          <div className="relative group">
+          <div className="relative">
             <input
               type="range"
               min="445"
@@ -81,7 +81,7 @@ const CityHotels = () => {
               className="w-full bg-gray-300 h-2 rounded-full outline-none"
             />
             <div
-              className="absolute -top-6 text-xs px-2 py-1 rounded bg-gray-700 text-white shadow opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+              className="absolute -top-6 text-xs px-2 py-1 rounded bg-gray-700 text-white shadow pointer-events-none transform -translate-x-1/2"
               style={{
                 left: `calc(${((maxPrice - 445) / (10000 - 445)) * 100}%)`,
               }}

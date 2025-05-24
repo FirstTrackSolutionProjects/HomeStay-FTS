@@ -72,7 +72,7 @@ const Navbar = () => {
             >
               💬 Chat
             </button>
-            <Link to="/logout" className="block px-3 py-2 rounded hover:bg-white/40 text-red-500 font-extrabold" onClick={closeMenu}>🚪 Log Out</Link>
+            {/* <Link to="/logout" className="block px-3 py-2 rounded hover:bg-white/40 text-red-500 font-extrabold" onClick={closeMenu}>🚪 Log Out</Link> */}
           </div>
         )}
       </div>

@@ -196,7 +196,7 @@ export default function HotelSearchBar() {
                   </div>
 
                   {/* Gender - Male */}
-                  <div className="flex justify-between items-center mb-2">
+                  {/* <div className="flex justify-between items-center mb-2">
                     <div className="font-medium">Male</div>
                     <div className="flex items-center space-x-2">
                       <button
@@ -214,10 +214,10 @@ export default function HotelSearchBar() {
                         +
                       </button>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* Gender - Female */}
-                  <div className="flex justify-between items-center">
+                  {/* <div className="flex justify-between items-center">
                     <div className="font-medium">Female</div>
                     <div className="flex items-center space-x-2">
                       <button
@@ -235,7 +235,7 @@ export default function HotelSearchBar() {
                         +
                       </button>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               ))}
 

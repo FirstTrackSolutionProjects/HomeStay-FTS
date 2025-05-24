@@ -13,7 +13,7 @@ const HotelDetails = () => {
   const navigate = useNavigate();
   const allHotels = Object.values(cityHotelsData).flat();
   const hotel = allHotels.find(h => h.id === parseInt(hotelId));
-  const [selectedRoom, setSelectedRoom] = React.useState(false);
+  const [selectedRoom, setSelectedRoom] = React.useState(null);
   const [showAllAmenities, setShowAllAmenities] = React.useState(false);
 
   if (!hotel) return <div className="p-4">Hotel not found</div>;
@@ -23,7 +23,7 @@ const HotelDetails = () => {
       alert("Please select a room type first");
       return;
     }
-    const totalAmount = selectedRoom.price + selectedRoom.taxes;
+    const totalAmount = discountedPrice + taxes;
     navigate("/payment", {
       state: {
         hotel,
@@ -33,13 +33,11 @@ const HotelDetails = () => {
     });
   };
 
-  const basePrice = selectedRoom?.originalPrice || hotel.price;
-  const discountedPrice = selectedRoom?.price || hotel.discountedPrice || hotel.price;
-  const discountPercent = selectedRoom
-    ? Math.round(((basePrice - discountedPrice) / basePrice) * 100)
-    : hotel.discountPercent || 0;
+  const basePrice = selectedRoom?.originalPrice ?? hotel.price;
+  const discountedPrice = selectedRoom?.discountedPrice ?? hotel.discountedPrice ?? hotel.price;
   const discountAmount = basePrice - discountedPrice;
-  const taxes = selectedRoom?.taxes || hotel.taxes || 140;
+  const discountPercent = Math.round((discountAmount / basePrice) * 100);
+  const taxes = selectedRoom?.taxes ?? hotel.taxes ?? 140;
   const totalPrice = discountedPrice + taxes;
 
   return (
@@ -108,7 +106,6 @@ const HotelDetails = () => {
           {/* Room Selection */}
           <div className="p-4 max-w-md mx-auto">
             <h1 className="text-xl font-bold mb-4">Choose Your Room Type</h1>
-
             <select
               value={selectedRoom?.type || ""}
               onChange={(e) =>
