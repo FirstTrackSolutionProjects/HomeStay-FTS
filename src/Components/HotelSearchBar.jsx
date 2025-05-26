@@ -146,7 +146,7 @@ export default function HotelSearchBar() {
                     <div>
                       <div className="font-medium">Adults</div>
                       <div className="text-gray-500 text-xs">
-                        Ages 18 or above
+                        Ages 5 or above
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
