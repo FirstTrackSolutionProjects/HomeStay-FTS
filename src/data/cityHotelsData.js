@@ -12,6 +12,7 @@ const cityHotelsData = {
       priceUnit: "per night",
       rating: 4.5,
       images: ["/City/Chennai/c1-1.jpg", "/City/Chennai/c1-2.jpg", "/City/Chennai/c1-3.jpg", "/City/Chennai/c1-4.jpg"],
+      
       description: "A cozy and affordable hotel in the heart of Chennai.",
       amenities: ["Complimentary Buffet Breakfast","AC","TV","Free Wifi","Kitchen","Queen Sized Bed", "Power backup", "Geyser", "Elevator","In-house Restaurant","Card payment","CCTV cameras","Bar","Dining area","Doctor on call","Reception","Security","24/7 check-in", "Luggage assistance", "Electric Kettle","Daily housekeeping","Fire extinguisher","First-aid kit","Free parking","Breakfast Available"],
       location: "Chennai, Tamil Nadu, India",

@@ -15,7 +15,7 @@ const Footer = () => {
         {/* Logo Section */}
         <div className="flex flex-col items-start">
           <img
-            src="/images/companylogo.jpg"
+            src="/images/logo.jpg"
             alt="First HomeStay Logo"
             className="w-16 mb-4"
           />
@@ -39,7 +39,7 @@ const Footer = () => {
               href="mailto:support@firsthomestay.com"
               className="text-blue-400 hover:underline"
             >
-              support@firsthomestay.com
+              support@firsthomestay.site
             </a>
           </p>
           <p className="text-sm">

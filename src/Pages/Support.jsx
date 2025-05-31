@@ -97,9 +97,9 @@ const Support = () => {
         {/* Header Section */}
         <div className="flex flex-col items-center text-center mb-8">
           <img
-            src="/images/companylogo.jpg"
+            src="/images/logo.jpg"
             alt="First Home Stay Logo"
-            className="w-20 h-20 rounded-full mb-4"
+            className="w-20 h-20 rounded-full mb-4 border-2 border-cyan-600 shadow-lg"
           />
           <h1 className="text-2xl font-bold text-gray-800">Help Assistant</h1>
           <p className="text-sm text-gray-500 mt-1">
