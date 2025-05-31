@@ -323,20 +323,21 @@ const HotelDetails = () => {
    </div>
  </div>
 
-          {/* Location Section */}
-          <div className="mb-8">
-          <h2 className="text-2xl font-semibold mb-2">Location</h2>
-          <p className="mb-4 text-gray-700">{hotel.location}</p>
-          <iframe
-            title="hotel map"
-              src={`https:www.google.com/maps?q=${encodeURIComponent(hotel.location)}&output=embed`}
-            width="100%"
-            height="250"
-            className="rounded-xl border shadow"
-            loading="lazy"
-            allowFullScreen
-          ></iframe>
-          </div>
+         {/* Location Section */}
+<div className="mb-8">
+  <h2 className="text-2xl font-semibold mb-2">Location</h2>
+  <p className="mb-4 text-gray-700">{hotel.location}</p>
+  <iframe
+    title="hotel map"
+    src={`https://www.google.com/maps?q=${encodeURIComponent(hotel.location)}&output=embed`}
+    width="100%"
+    height="250"
+    className="rounded-xl border shadow"
+    loading="lazy"
+    allowFullScreen
+  ></iframe>
+</div>
+
 
 
           {/* Policies */}
