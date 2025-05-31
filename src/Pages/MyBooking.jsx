@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { FaReceipt, FaHotel, FaMoneyBillWave, FaClock } from "react-icons/fa";
+import {
+  FaReceipt,
+  FaHotel,
+  FaMoneyBillWave,
+  FaClock,
+} from "react-icons/fa";
+import { AiOutlineUser } from "react-icons/ai";
+import { MdLocationOn } from "react-icons/md";
 
 const MyBooking = () => {
   const [booking, setBooking] = useState([]);
@@ -10,7 +17,9 @@ const MyBooking = () => {
   }, []);
 
   const handleCancelBooking = (orderId) => {
-    const confirmCancel = window.confirm("Are you sure you want to cancel this booking?");
+    const confirmCancel = window.confirm(
+      "Are you sure you want to cancel this booking?"
+    );
     if (confirmCancel) {
       const updatedBookings = booking.filter((b) => b.orderId !== orderId);
       setBooking(updatedBookings);
@@ -40,12 +49,28 @@ const MyBooking = () => {
                       <strong className="text-purple-700">Order ID:</strong> {b.orderId}
                     </span>
                   </div>
+
                   <div className="flex items-center gap-3">
                     <FaHotel className="text-pink-500" />
                     <span>
                       <strong className="text-purple-700">Hotel:</strong> {b.hotel.name}
                     </span>
                   </div>
+
+                  <div className="flex items-center gap-3">
+                    <MdLocationOn className="text-red-500" />
+                    <span>
+                      <strong className="text-purple-700">Location:</strong> {b.hotel.location}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <AiOutlineUser className="text-green-600" />
+                    <span>
+                      <strong className="text-purple-700">Guest:</strong> {b.guestName}
+                    </span>
+                  </div>
+
                   <div className="flex items-center gap-3">
                     <FaMoneyBillWave className="text-green-600" />
                     <span>
@@ -53,6 +78,7 @@ const MyBooking = () => {
                       {b.paymentMethod === "payNow" ? "Paid Online" : "Pay at Hotel"}
                     </span>
                   </div>
+
                   <div className="flex items-center gap-3">
                     <FaClock className="text-yellow-500" />
                     <span>

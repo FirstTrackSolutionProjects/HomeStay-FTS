@@ -119,7 +119,7 @@ const GuestPolicy = () => {
             </h5>
             <p className="mt-1">
               For assistance, please contact our support team or call us at{" "}
-              <strong>9040170727</strong>or email us <strong>support@firsthomestay.com</strong>
+              <strong>9040170727</strong>or email us <strong>support@firsthomestay.site</strong>
             </p>
           </div>
         </div>

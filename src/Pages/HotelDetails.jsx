@@ -9,6 +9,7 @@ import { CheckCircle, Star, Minus, Plus, Trash2 } from "lucide-react";
 import roomData from "../data/roomData";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import BookingForm from "../Components/BookingForm";
 
 const HotelDetails = () => {
   const { hotelId } = useParams();
@@ -200,13 +201,13 @@ const HotelDetails = () => {
           </div>
 
           {/* Booking Inputs */}
-          <div className="p-4 max-w-md mx-auto space-y-6 border rounded shadow mt-6">
-            <h3 className="text-lg font-semibold mb-2">Booking Details</h3>
+          <div className="p-4 border rounded w-full max-w-sm">
+            <h3 className="text-lg font-semibold mb-4">Booking Details</h3>
 
             {/* Date Pickers */}
-            <div className="flex gap-4">
-              <div className="flex-1">
-              <label className="block mb-1 font-medium">Check-in Date</label>
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div>
+              <label className="block mb-1 font-medium text-sm">Check-in Date</label>
               <DatePicker
                 selected={startDate}
                 onChange={(date) => {
@@ -221,7 +222,7 @@ const HotelDetails = () => {
               />
             </div>
             <div>
-              <label className="block mb-1 font-medium">Check-out Date</label>
+              <label className="block mb-1 font-medium text-sm">Check-out Date</label>
               <DatePicker
                 selected={endDate}
                 onChange={(date) => setEndDate(date)}
@@ -323,19 +324,19 @@ const HotelDetails = () => {
  </div>
 
           {/* Location Section */}
- <div className="mb-8">
-   <h2 className="text-2xl font-semibold mb-2">Location</h2>
-   <p className="mb-4 text-gray-700">{hotel.location}</p>
-   <iframe
-    title="hotel map"
-    src={`https:www.google.com/maps?q=${encodeURIComponent(hotel.location)}&output=embed`}
-    width="100%"
-    height="250"
-    className="rounded-xl border shadow"
-    loading="lazy"
-    allowFullScreen
-  ></iframe>
-</div>
+          <div className="mb-8">
+          <h2 className="text-2xl font-semibold mb-2">Location</h2>
+          <p className="mb-4 text-gray-700">{hotel.location}</p>
+          <iframe
+            title="hotel map"
+              src={`https:www.google.com/maps?q=${encodeURIComponent(hotel.location)}&output=embed`}
+            width="100%"
+            height="250"
+            className="rounded-xl border shadow"
+            loading="lazy"
+            allowFullScreen
+          ></iframe>
+          </div>
 
 
           {/* Policies */}
@@ -356,11 +357,11 @@ const HotelDetails = () => {
     </div>
   </div>
   <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
-    <li>Only Indian nationals are allowed</li>
+    <li>Guests of all nationalities are welcome with valid ID proof</li>
     <li>Couples are welcome</li>
-    <li>Check-in with local or outstation ID (PAN not accepted)</li>
+    <li>Valid government-issued photo ID required at check-in (PAN card not accepted)</li>
     <li>
-      This hotel is serviced under the trade name of Amethyst Business Hotel.
+      This hotel is independently managed and operated under a licensed hospitality brand.
     </li>
   </ul>
 </div>

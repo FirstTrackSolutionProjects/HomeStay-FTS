@@ -350,7 +350,7 @@ const Terms = () => {
           <section>
             <h2 className="text-lg font-semibold text-orange-600">15. Contact Information</h2>
             <ul className="list-none pl-0">
-              <li>Email: <a href="mailto:support@firsthomestay.com" className="text-blue-600">support@firsthomestay.com</a></li>
+              <li>Email: <a href="mailto:support@firsthomestay.site" className="text-blue-600">support@firsthomestay.site</a></li>
               <li>Phone: +91-9040170727</li>
               {/* <li>Address: [Physical Address]</li> */}
             </ul>
