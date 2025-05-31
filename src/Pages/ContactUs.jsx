@@ -128,7 +128,7 @@ const ContactUs = () => {
             <FaEnvelope className="text-gray-500 mr-3" />
             <span>
               <span className="font-semibold text-purple-700">Email:</span>{" "}
-              <a href="mailto:support@firsthomestay.com" className="text-blue-600 hover:underline">support@firsthomestay.com</a>
+              <a href="mailto:support@firsthomestay.site" className="text-blue-600 hover:underline">support@firsthomestay.site</a>
             </span>
           </div>
 

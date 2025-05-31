@@ -81,13 +81,14 @@ const CityHotels = () => {
               className="w-full bg-gray-300 h-2 rounded-full outline-none"
             />
             <div
-              className="absolute -top-6 text-xs px-2 py-1 rounded bg-gray-700 text-white shadow pointer-events-none transform -translate-x-1/2"
-              style={{
-                left: `calc(${((maxPrice - 445) / (10000 - 445)) * 100}%)`,
-              }}
+              className="absolute -top-6 text-xs px-2 py-1 rounded bg-gray-700 text-white shadow pointer-events-none"
+                style={{
+              left: `min(calc(${((maxPrice - 445) / (10000 - 445)) * 100}% - 20px), calc(100% - 70px))`,
+                }}
             >
-              ₹{maxPrice} per night/room
+            ₹{maxPrice} per night/room
             </div>
+
           </div>
           <div className="flex justify-between text-sm text-gray-600 mt-1">
             <span>₹445</span>

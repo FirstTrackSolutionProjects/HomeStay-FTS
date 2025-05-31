@@ -34,7 +34,7 @@ const Navbar = () => {
       <div className="flex items-center gap-2">
       <Link to="/" className="flex items-center gap-2" onClick={closeMenu}>
         <img 
-          src="/images/companylogo.jpg" 
+          src="/images/logo.jpg" 
           alt="Hotel Logo" 
           className="w-12 h-12 rounded-full" 
         />

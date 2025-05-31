@@ -9,6 +9,16 @@ const MyBooking = () => {
     setBooking(data);
   }, []);
 
+  const handleCancelBooking = (orderId) => {
+    const confirmCancel = window.confirm("Are you sure you want to cancel this booking?");
+    if (confirmCancel) {
+      const updatedBookings = booking.filter((b) => b.orderId !== orderId);
+      setBooking(updatedBookings);
+      localStorage.setItem("myBooking", JSON.stringify(updatedBookings));
+      alert("Booking cancelled.");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-3xl mx-auto">
@@ -27,32 +37,37 @@ const MyBooking = () => {
                   <div className="flex items-center gap-3">
                     <FaReceipt className="text-blue-500" />
                     <span>
-                      <strong className="text-purple-700">Order ID:</strong>{" "}
-                      {b.orderId}
+                      <strong className="text-purple-700">Order ID:</strong> {b.orderId}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
                     <FaHotel className="text-pink-500" />
                     <span>
-                      <strong className="text-purple-700">Hotel:</strong>{" "}
-                      {b.hotel.name}
+                      <strong className="text-purple-700">Hotel:</strong> {b.hotel.name}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
                     <FaMoneyBillWave className="text-green-600" />
                     <span>
                       <strong className="text-purple-700">Payment:</strong>{" "}
-                      {b.paymentMethod === "payNow"
-                        ? "Paid Online"
-                        : "Pay at Hotel"}
+                      {b.paymentMethod === "payNow" ? "Paid Online" : "Pay at Hotel"}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
                     <FaClock className="text-yellow-500" />
                     <span>
-                      <strong className="text-purple-700">Booking Time:</strong>{" "}
-                      {b.date}
+                      <strong className="text-purple-700">Booking Time:</strong> {b.date}
                     </span>
+                  </div>
+
+                  {/* Cancel Booking Button */}
+                  <div className="pt-4">
+                    <button
+                      onClick={() => handleCancelBooking(b.orderId)}
+                      className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
+                    >
+                      Cancel Booking
+                    </button>
                   </div>
                 </div>
               </li>

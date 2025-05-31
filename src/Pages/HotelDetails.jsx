@@ -5,44 +5,93 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { CheckCircle, Star } from "lucide-react";
+import { CheckCircle, Star, Minus, Plus, Trash2 } from "lucide-react";
 import roomData from "../data/roomData";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const HotelDetails = () => {
   const { hotelId } = useParams();
   const navigate = useNavigate();
   const allHotels = Object.values(cityHotelsData).flat();
-  const hotel = allHotels.find(h => h.id === parseInt(hotelId));
+  const hotel = allHotels.find((h) => h.id === parseInt(hotelId));
+
   const [selectedRoom, setSelectedRoom] = React.useState(null);
   const [showAllAmenities, setShowAllAmenities] = React.useState(false);
+  const [startDate, setStartDate] = React.useState(new Date());
+  const [endDate, setEndDate] = React.useState(
+    new Date(Date.now() + 24 * 60 * 60 * 1000)
+  );
+  const [showGuestsPicker, setShowGuestsPicker] = React.useState(false);
+  const [bookingName, setBookingName] = React.useState("Adya");
+
+  const [roomsData, setRoomsData] = React.useState([{ adults: 1, children: 0 }]);
 
   if (!hotel) return <div className="p-4">Hotel not found</div>;
+
+  // Calculate number of nights
+  const nights = Math.ceil(
+    (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
+  );
+
+  const guests = `${roomsData.length} Room${roomsData.length > 1 ? "s" : ""}, ${
+    roomsData.reduce((acc, room) => acc + room.adults + room.children, 0)
+  } Guest${
+    roomsData.reduce((acc, room) => acc + room.adults + room.children, 0) > 1
+      ? "s"
+      : ""
+  }`;
+
+  const basePrice = selectedRoom?.originalPrice ?? hotel.price;
+  const discountedPrice =
+    selectedRoom?.discountedPrice ?? hotel.discountedPrice ?? hotel.price;
+  const discountAmount = basePrice - discountedPrice;
+  const discountPercent = Math.round((discountAmount / basePrice) * 100);
+  const taxes = selectedRoom?.taxes ?? hotel.taxes ?? 140;
+
+  // Calculate total price based on rooms and nights
+  const totalRooms = roomsData.length;
+  const totalRoomPrice = discountedPrice * nights * totalRooms;
+  const totalTaxes = taxes * totalRooms; // taxes assumed per room
+  const totalPrice = totalRoomPrice + totalTaxes;
 
   const handlePayNow = () => {
     if (!selectedRoom) {
       alert("Please select a room type first");
       return;
     }
-    const totalAmount = discountedPrice + taxes;
+
     navigate("/payment", {
       state: {
         hotel,
         selectedRoom,
-        totalAmount,
+        totalAmount: totalPrice,
+        bookingDates: `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`,
+        guests,
+        bookingName,
       },
     });
   };
 
-  const basePrice = selectedRoom?.originalPrice ?? hotel.price;
-  const discountedPrice = selectedRoom?.discountedPrice ?? hotel.discountedPrice ?? hotel.price;
-  const discountAmount = basePrice - discountedPrice;
-  const discountPercent = Math.round((discountAmount / basePrice) * 100);
-  const taxes = selectedRoom?.taxes ?? hotel.taxes ?? 140;
-  const totalPrice = discountedPrice + taxes;
+  const handleRoomChange = (index, type, delta) => {
+    setRoomsData((prev) => {
+      const updated = [...prev];
+      updated[index][type] = Math.max(0, updated[index][type] + delta);
+      return updated;
+    });
+  };
+
+  const addRoom = () => {
+    setRoomsData([...roomsData, { adults: 1, children: 0 }]);
+  };
+
+  const removeRoom = (index) => {
+    setRoomsData((prev) => prev.filter((_, i) => i !== index));
+  };
 
   return (
     <div className="p-4 max-w-6xl mx-auto">
-      {/* Title and Badge */}
+      {/* Hotel Header */}
       <div className="mb-3">
         <h1 className="text-2xl font-bold">{hotel.name}</h1>
         <p className="text-gray-600">{hotel.location}</p>
@@ -60,7 +109,7 @@ const HotelDetails = () => {
         modules={[Autoplay, Pagination]}
         autoplay={{ delay: 2500, disableOnInteraction: false }}
         pagination={{ clickable: true }}
-        loop={true}
+        loop
         spaceBetween={20}
         slidesPerView={1}
         className="rounded-lg mb-4"
@@ -82,25 +131,27 @@ const HotelDetails = () => {
           {/* Amenities */}
           <h2 className="text-xl font-semibold mb-2">Amenities</h2>
           <ul className="grid grid-cols-2 gap-2 text-sm">
-            {(showAllAmenities ? hotel.amenities : hotel.amenities.slice(0, 4)).map((item, idx) => (
-              <li key={idx} className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500" /> {item}
-              </li>
-            ))}
+            {(showAllAmenities ? hotel.amenities : hotel.amenities.slice(0, 4)).map(
+              (item, idx) => (
+                <li key={idx} className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500" /> {item}
+                </li>
+              )
+            )}
           </ul>
           {hotel.amenities.length > 4 && (
             <button
-              onClick={() => setShowAllAmenities(prev => !prev)}
+              onClick={() => setShowAllAmenities((prev) => !prev)}
               className="mt-2 text-lg text-red-500 hover:underline"
             >
               {showAllAmenities ? "Show less" : "Show More"}
             </button>
           )}
 
-          {/* About */}
-          <div className="mt-6">
-            <h3 className="text-lg font-bold mb-1">About this hotel</h3>
-            <p className="text-sm text-gray-700">{hotel.description}</p>
+          {/* Description */}
+          <div className="mt-4">
+            <h2 className="text-xl font-semibold mb-2">About</h2>
+            <p className="text-gray-700">{hotel.description}</p>
           </div>
 
           {/* Room Selection */}
@@ -109,7 +160,7 @@ const HotelDetails = () => {
             <select
               value={selectedRoom?.type || ""}
               onChange={(e) =>
-                setSelectedRoom(roomData.find(room => room.type === e.target.value))
+                setSelectedRoom(roomData.find((room) => room.type === e.target.value))
               }
               className="w-full border p-2 rounded"
             >
@@ -129,10 +180,18 @@ const HotelDetails = () => {
                   alt={selectedRoom.type}
                   className="w-full h-40 object-cover rounded mb-3"
                 />
-                <p><strong>Room Size:</strong> {selectedRoom.size}</p>
-                <p><strong>Features:</strong> {selectedRoom.features.join(", ")}</p>
-                <p><strong>Price:</strong> ₹{selectedRoom.discountedPrice}</p>
-                <p><strong>Taxes:</strong> ₹{selectedRoom.taxes}</p>
+                <p>
+                  <strong>Room Size:</strong> {selectedRoom.size}
+                </p>
+                <p>
+                  <strong>Features:</strong> {selectedRoom.features.join(", ")}
+                </p>
+                <p>
+                  <strong>Price:</strong> ₹{selectedRoom.discountedPrice}
+                </p>
+                <p>
+                  <strong>Taxes:</strong> ₹{selectedRoom.taxes}
+                </p>
                 <p className="font-bold mt-2">
                   Total: ₹{selectedRoom.discountedPrice + selectedRoom.taxes}
                 </p>
@@ -140,102 +199,214 @@ const HotelDetails = () => {
             )}
           </div>
 
-          {/* Nearby */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">What's nearby?</h2>
-            <div className="border p-4 rounded-md">
-              <div className="space-y-2 text-gray-700 text-sm">
-                <p>🚌 Silk Board Bus Stop - 3km</p>
-                <p>🏥 Jayadeva Hospital - 3.3km</p>
-                <p>🛫 Rajadhani Tours - 3.4km</p>
-                <p>🍽️ Savoury Sea Shell - 2.7km</p>
-              </div>
-            </div>
-          </div>
+          {/* Booking Inputs */}
+          <div className="p-4 max-w-md mx-auto space-y-6 border rounded shadow mt-6">
+            <h3 className="text-lg font-semibold mb-2">Booking Details</h3>
 
-          {/* Location Map */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Location</h2>
-            <iframe
-              title="hotel map"
-              src={`https://www.google.com/maps?q=${encodeURIComponent(hotel.location)}&output=embed`}
-              width="100%"
-              height="250"
-              className="rounded-xl border shadow"
-              loading="lazy"
-              allowFullScreen
-            ></iframe>
-          </div>
-
-          {/* Policies */}
-          <div className="mt-10">
-            <h2 className="text-2xl font-semibold mb-4">Hotel policies</h2>
-            <div className="flex items-center gap-12 mb-4">
-              <div>
-                <p className="text-xs text-gray-500">Check-in</p>
-                <div className="border rounded-md px-4 py-2 text-center font-semibold text-sm shadow-sm w-28">
-                  12:00 PM
-                </div>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500">Check-out</p>
-                <div className="border rounded-md px-4 py-2 text-center font-semibold text-sm shadow-sm w-28">
-                  11:00 AM
-                </div>
-              </div>
+            {/* Date Pickers */}
+            <div className="flex gap-4">
+              <div className="flex-1">
+              <label className="block mb-1 font-medium">Check-in Date</label>
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => {
+                  setStartDate(date);
+                  if (endDate <= date) {
+                    setEndDate(new Date(date.getTime() + 24 * 60 * 60 * 1000));
+                  }
+                }}
+                minDate={new Date()}
+                className="w-full border p-2 rounded"
+                dateFormat="dd MMM yyyy"
+              />
             </div>
-            <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
-              <li>Only Indian nationals are allowed</li>
-              <li>Couples are welcome</li>
-              <li>Check-in with local or outstation ID (PAN not accepted)</li>
-              <li>
-                This hotel is serviced under the trade name of Amethyst Business Hotel as
-                per quality standards of OYO
-              </li>
-            </ul>
+            <div>
+              <label className="block mb-1 font-medium">Check-out Date</label>
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                minDate={new Date(startDate.getTime() + 24 * 60 * 60 * 1000)}
+                className="w-full border p-2 rounded"
+                dateFormat="dd MMM yyyy"
+              />
+            </div>
+            </div>
+            
+
+            {/* Guest Selector */}
+            <div className="relative">
+              <input
+                type="text"
+                value={guests}
+                onClick={() => setShowGuestsPicker(!showGuestsPicker)}
+                readOnly
+                className="w-full border p-2 rounded cursor-pointer"
+              />
+              {showGuestsPicker && (
+                <div className="absolute z-20 bg-white border rounded p-4 shadow mt-1 w-full">
+                  {roomsData.map((room, idx) => (
+                    <div key={idx} className="mb-4 border-b pb-3">
+                      <div className="flex justify-between items-center mb-2 font-semibold">
+                        <span>Room {idx + 1}</span>
+                        {roomsData.length > 1 && (
+                          <button
+                            onClick={() => removeRoom(idx)}
+                            className="text-red-600 text-sm flex items-center"
+                          >
+                            <Trash2 className="w-4 h-4 mr-1" /> Remove
+                          </button>
+                        )}
+                      </div>
+                      <div className="mb-2">
+                        <p className="text-sm font-medium">Adults (Ages 5+)</p>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => handleRoomChange(idx, "adults", -1)}
+                            className="border px-2 py-1 rounded"
+                          >
+                            <Minus size={14} />
+                          </button>
+                          <span>{room.adults}</span>
+                          <button
+                            onClick={() => handleRoomChange(idx, "adults", 1)}
+                            className="border px-2 py-1 rounded"
+                          >
+                            <Plus size={14} />
+                          </button>
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium">Children (Ages 0-5)</p>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => handleRoomChange(idx, "children", -1)}
+                            className="border px-2 py-1 rounded"
+                          >
+                            <Minus size={14} />
+                          </button>
+                          <span>{room.children}</span>
+                          <button
+                            onClick={() => handleRoomChange(idx, "children", 1)}
+                            className="border px-2 py-1 rounded"
+                          >
+                            <Plus size={14} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  <button
+                    onClick={addRoom}
+                    className="bg-blue-600 text-white px-4 py-2 rounded w-full"
+                  >
+                    Add Room
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Pricing Summary */}
+                 {/* Right Section */}
+         <div className="md:col-span-1 space-y-8">
+          {/* Nearby Locations */}
+ <div className="mb-8">
+   <h2 className="text-2xl font-semibold mb-4">What's nearby?</h2>
+   <div className="border p-4 rounded-md">
+     <div className="space-y-2 text-gray-700 text-sm">
+       <p>🚌 Silk Board Bus Stop - 3km</p>
+       <p>🏥 Jayadeva Hospital - 3.3km</p>
+       <p>🛫 Rajadhani Tours - 3.4km</p>
+       <p>🍽️ Savoury Sea Shell - 2.7km</p>
+     </div>
+   </div>
+ </div>
+
+          {/* Location Section */}
+ <div className="mb-8">
+   <h2 className="text-2xl font-semibold mb-2">Location</h2>
+   <p className="mb-4 text-gray-700">{hotel.location}</p>
+   <iframe
+    title="hotel map"
+    src={`https:www.google.com/maps?q=${encodeURIComponent(hotel.location)}&output=embed`}
+    width="100%"
+    height="250"
+    className="rounded-xl border shadow"
+    loading="lazy"
+    allowFullScreen
+  ></iframe>
+</div>
+
+
+          {/* Policies */}
+         <div className="mt-10">
+  <h2 className="text-2xl font-semibold mb-4">Hotel policies</h2>
+  <div className="flex items-center gap-12 mb-4">
+    <div>
+      <p className="text-xs text-gray-500">Check-in</p>
+      <div className="border rounded-md px-4 py-2 text-center font-semibold text-sm shadow-sm w-28">
+        12:00 PM
+      </div>
+    </div>
+    <div>
+      <p className="text-xs text-gray-500">Check-out</p>
+      <div className="border rounded-md px-4 py-2 text-center font-semibold text-sm shadow-sm w-28">
+        11:00 AM
+      </div>
+    </div>
+  </div>
+  <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
+    <li>Only Indian nationals are allowed</li>
+    <li>Couples are welcome</li>
+    <li>Check-in with local or outstation ID (PAN not accepted)</li>
+    <li>
+      This hotel is serviced under the trade name of Amethyst Business Hotel.
+    </li>
+  </ul>
+</div>
+
+        {/* (Price Summary & Pay Now) */}
         <div>
-          <div className="border rounded-lg p-4 shadow-md bg-white mt-2 sticky top-4">
-            <div className="text-2xl font-bold text-green-600 mb-1">
-              ₹{discountedPrice}
-              {discountedPrice !== basePrice && (
-                <>
-                  <span className="line-through text-sm text-gray-500 ml-2">₹{basePrice}</span>
-                  <span className="text-orange-500 text-sm ml-1">({discountPercent}% off)</span>
-                </>
-              )}
-            </div>
-            <p className="text-sm text-gray-500">+ taxes & fees: ₹{taxes}</p>
-
-            <div className="my-3">
-              <p className="font-semibold">Mon, 12 May – Tue, 13 May</p>
-              <p className="text-sm text-gray-600">1 Room, 1 Guest</p>
-            </div>
-
-            <div className="text-sm">
-              <div className="flex justify-between mb-1">
-                <span>Discount applied</span>
-                <span className="text-green-600">– ₹{discountAmount}</span>
-              </div>
-            </div>
-
-            <div className="border-t mt-3 pt-3 text-sm">
-              <div className="flex justify-between">
-                <span>Total savings</span>
-                <span className="text-green-700 font-semibold">₹{discountAmount}</span>
-              </div>
-              <div className="flex justify-between font-semibold text-lg">
-                <span>Total price</span>
-                <span>₹{totalPrice}</span>
-              </div>
-            </div>
+          <div className="border p-6 rounded-xl shadow-sm sticky top-4">
+            <h3 className="text-xl font-bold mb-4">Price Summary</h3>
+            {selectedRoom ? (
+              <>
+                <div className="flex justify-between mb-1">
+                  <span>
+                    Base Price (₹{discountedPrice} × {nights} night
+                    {nights > 1 ? "s" : ""} × {totalRooms} room
+                    {totalRooms > 1 ? "s" : ""}):
+                  </span>
+                  <span>₹{totalRoomPrice.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between mb-1 text-green-600">
+                  <span>Discount:</span>
+                  <span>
+                    -₹
+                    {(discountAmount * nights * totalRooms).toLocaleString()} (
+                    {discountPercent}%)
+                  </span>
+                </div>
+                <div className="flex justify-between mb-1">
+                  <span>Taxes & Charges:</span>
+                  <span>₹{totalTaxes.toLocaleString()}</span>
+                </div>
+                <hr className="my-2" />
+                <div className="flex justify-between font-semibold text-lg">
+                  <span>Total Price:</span>
+                  <span>₹{totalPrice.toLocaleString()}</span>
+                </div>
+              </>
+            ) : (
+              <p className="text-red-600">Please select a room type to see pricing</p>
+            )}
 
             <button
               onClick={handlePayNow}
-              className="mt-5 w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-xl shadow transition"
+              disabled={!selectedRoom}
+              className={`mt-6 w-full py-3 text-white font-semibold rounded ${
+                selectedRoom ? "bg-red-600 hover:bg-red-700" : "bg-gray-400 cursor-not-allowed"
+              }`}
             >
               Pay Now
             </button>
@@ -243,7 +414,9 @@ const HotelDetails = () => {
         </div>
       </div>
     </div>
+    </div>
   );
 };
 
 export default HotelDetails;
+
