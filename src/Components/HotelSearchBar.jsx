@@ -267,15 +267,85 @@
 //   );
 // }
 
-import React from "react";
+// import React from "react";
+// import { FaMapMarkerAlt } from "react-icons/fa";
+// import Button from "./ui/Button";
+
+// export default function HotelSearchBar() {
+//   return (
+//     <div className="bg-gradient-to-r from-gray-400 to-gray-900 py-10 px-4 text-white mt-5">
+//       <div className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center max-w-xl mx-auto text-gray-800 space-y-4">
+        
+//         {/* Location Input */}
+//         <div className="flex items-center border border-gray-400 rounded-md px-3 py-2 w-full">
+//           <FaMapMarkerAlt className="text-gray-500 mr-2" />
+//           <input
+//             type="text"
+//             placeholder="Enter city, location or hotels"
+//             className="w-full outline-none text-gray-800"
+//           />
+//         </div>
+
+//         {/* Centered Search Button */}
+//         <Button className="bg-green-600 hover:bg-green-700 text-white px-10 py-2 rounded-md">
+//           Search
+//         </Button>
+//       </div>
+//     </div>
+//   );
+// }
+
+import React, { useState } from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import Button from "./ui/Button";
+import cityHotelsData from "../data/cityHotelsData";
 
 export default function HotelSearchBar() {
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    const lowerQuery = query.toLowerCase().trim();
+
+    // 1. Exact city match
+    if (cityHotelsData[lowerQuery]) {
+      navigate(`/city/${lowerQuery}`);
+      return;
+    }
+
+    // 2. Try extracting city from query
+    for (const city in cityHotelsData) {
+      if (lowerQuery.includes(city)) {
+        const hotelQuery = lowerQuery.replace(city, "").trim();
+        const matchedHotel = cityHotelsData[city].find((hotel) =>
+          hotel.name.toLowerCase().includes(hotelQuery)
+        );
+        if (matchedHotel) {
+          navigate(`/city/hotel/${matchedHotel.id}`);
+          return;
+        }
+      }
+    }
+
+    // 3. Fallback: Search all hotels in all cities
+    for (const city in cityHotelsData) {
+      const matchedHotel = cityHotelsData[city].find((hotel) =>
+        hotel.name.toLowerCase().includes(lowerQuery)
+      );
+      if (matchedHotel) {
+        navigate(`/city/hotel/${matchedHotel.id}`);
+        return;
+      }
+    }
+
+    alert("No matching city or hotel found.");
+  };
+
   return (
     <div className="bg-gradient-to-r from-gray-400 to-gray-900 py-10 px-4 text-white mt-5">
       <div className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center max-w-xl mx-auto text-gray-800 space-y-4">
-        
+
         {/* Location Input */}
         <div className="flex items-center border border-gray-400 rounded-md px-3 py-2 w-full">
           <FaMapMarkerAlt className="text-gray-500 mr-2" />
@@ -283,11 +353,17 @@ export default function HotelSearchBar() {
             type="text"
             placeholder="Enter city, location or hotels"
             className="w-full outline-none text-gray-800"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
           />
         </div>
 
-        {/* Centered Search Button */}
-        <Button className="bg-green-600 hover:bg-green-700 text-white px-10 py-2 rounded-md">
+        {/* Search Button */}
+        <Button
+          onClick={handleSearch}
+          className="bg-green-600 hover:bg-green-700 text-white px-10 py-2 rounded-md"
+        >
           Search
         </Button>
       </div>

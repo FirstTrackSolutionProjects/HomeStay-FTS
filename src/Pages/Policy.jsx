@@ -47,7 +47,7 @@ const Policy = () => {
           content={
             <>
             For questions about this policy, please contact us at:{" "}
-            <strong>support@firsthomestay.com</strong> or{" "}
+            <strong>support@firsthomestay.site</strong> or{" "}
             <strong>+91-9040170727</strong>.
             </>
           } 
