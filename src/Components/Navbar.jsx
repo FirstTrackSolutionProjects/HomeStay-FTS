@@ -41,7 +41,7 @@ const Navbar = ({ onFilterClick }) => {
       </div>
 
       {/* Filter + Menu */}
-      <div className="flex items-center gap-2" ref={menuRef}>
+      <div className="flex items-center gap-2 relative" ref={menuRef}>
         {/* Filter Button */}
         <button
           onClick={handleFilterClick}
@@ -60,7 +60,8 @@ const Navbar = ({ onFilterClick }) => {
 
         {/* Dropdown Menu */}
         {menuOpen && (
-          <div className="absolute right-0 mt-2 w-64 bg-gradient-to-r from-cyan-200 to-cyan-100 text-black rounded-lg shadow-lg p-4 z-50 space-y-2">
+         <div className="absolute right-0 top-full mt-2 w-64 bg-gradient-to-r from-cyan-200 to-cyan-100 text-black rounded-lg shadow-lg p-4 z-50 space-y-2 max-h-[90vh] overflow-y-auto">
+
             <Link to="/" className="block px-3 py-2 rounded hover:bg-white/40" onClick={closeMenu}>🏠 Home</Link>
             <Link to="/aboutus" className="block px-3 py-2 rounded hover:bg-white/40" onClick={closeMenu}>ℹ️ About Us</Link>
             <Link to="/mybooking" className="block px-3 py-2 rounded hover:bg-white/40" onClick={closeMenu}>📘 My Booking</Link>
