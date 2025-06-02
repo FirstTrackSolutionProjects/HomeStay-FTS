@@ -23,25 +23,70 @@ const CityHotels = () => {
     checkInFeatures: "",
   });
 
+  const handleFilterChange = (key, value) => {
+    setFilters((prev) => ({
+      ...prev,
+      [key]: prev[key] === value ? "" : value, // toggle logic
+    }));
+  };
+
   const renderStars = (rating) => {
     const full = Math.floor(rating);
     const half = rating % 1 >= 0.5;
     const empty = 5 - full - (half ? 1 : 0);
     return (
       <div className="flex items-center gap-1 text-yellow-500 text-sm">
-        {Array(full).fill().map((_, i) => <span key={`f-${i}`}>★</span>)}
+        {Array(full)
+          .fill()
+          .map((_, i) => (
+            <span key={`f-${i}`}>★</span>
+          ))}
         {half && <span>☆</span>}
-        {Array(empty).fill().map((_, i) => <span key={`e-${i}`}>☆</span>)}
+        {Array(empty)
+          .fill()
+          .map((_, i) => (
+            <span key={`e-${i}`}>☆</span>
+          ))}
       </div>
     );
   };
 
   const filterSections = [
-    { title: "Rooms & Suites", key: "roomsSuites", options: ["Couple Friendly", "International Guests", "Business Travellers"], type: "radio", name: "roomsSuites" },
-    { title: "Category", key: "category", options: ["Resort", "Executive", "Home", "Hotel Rooms"], type: "radio", name: "category" },
-    { title: "Accommodation Type", key: "accommodationType", options: ["Hotel", "Guest House"], type: "radio", name: "accommodationType" },
-    { title: "Hotel Facilities", key: "hotelFacilities", options: ["Seating Area", "Swimming Pool", "King Sized Bed", "Queen Sized Bed"], type: "radio", name: "hotelFacilities" },
-    { title: "Check-in Features", key: "checkInFeatures", options: ["24*7 Check-in", "Free Cancellation", "ID Proof Required"], type: "radio", name: "checkInFeatures" },
+    {
+      title: "Rooms & Suites",
+      key: "roomsSuites",
+      options: ["Couple Friendly", "International Guests", "Business Travellers"],
+      type: "radio",
+      name: "roomsSuites",
+    },
+    {
+      title: "Category",
+      key: "category",
+      options: ["Resort", "Executive", "Home", "Hotel Rooms"],
+      type: "radio",
+      name: "category",
+    },
+    {
+      title: "Accommodation Type",
+      key: "accommodationType",
+      options: ["Hotel", "Guest House"],
+      type: "radio",
+      name: "accommodationType",
+    },
+    {
+      title: "Hotel Facilities",
+      key: "hotelFacilities",
+      options: ["Seating Area", "Swimming Pool", "King Sized Bed", "Queen Sized Bed"],
+      type: "radio",
+      name: "hotelFacilities",
+    },
+    {
+      title: "Check-in Features",
+      key: "checkInFeatures",
+      options: ["24*7 Check-in", "Free Cancellation", "ID Proof Required"],
+      type: "radio",
+      name: "checkInFeatures",
+    },
   ];
 
   const filteredHotels = combinedHotels
@@ -49,7 +94,8 @@ const CityHotels = () => {
     .filter((hotel) => hotel.price <= maxPrice)
     .filter((hotel) => {
       if (filters.category && hotel.category !== filters.category) return false;
-      if (filters.accommodationType && hotel.accommodationType !== filters.accommodationType) return false;
+      if (filters.accommodationType && hotel.accommodationType !== filters.accommodationType)
+        return false;
       if (filters.roomsSuites && hotel.roomsSuites !== filters.roomsSuites) return false;
       if (filters.hotelFacilities && hotel.hotelFacilities !== filters.hotelFacilities) return false;
       if (filters.checkInFeatures && hotel.checkInFeatures !== filters.checkInFeatures) return false;
@@ -69,6 +115,7 @@ const CityHotels = () => {
       <div className="w-full lg:w-1/4 space-y-4 mb-6 lg:mb-0">
         <h2 className="text-xl font-bold">Filters</h2>
 
+        {/* Price Filter */}
         <div>
           <h4 className="font-semibold mb-2">Price Range</h4>
           <div className="relative">
@@ -82,13 +129,12 @@ const CityHotels = () => {
             />
             <div
               className="absolute -top-6 text-xs px-2 py-1 rounded bg-gray-700 text-white shadow pointer-events-none"
-                style={{
-              left: `min(calc(${((maxPrice - 445) / (10000 - 445)) * 100}% - 20px), calc(100% - 70px))`,
-                }}
+              style={{
+                left: `min(calc(${((maxPrice - 445) / (10000 - 445)) * 100}% - 20px), calc(100% - 70px))`,
+              }}
             >
-            ₹{maxPrice} per night/room
+              ₹{maxPrice} per night/room
             </div>
-
           </div>
           <div className="flex justify-between text-sm text-gray-600 mt-1">
             <span>₹445</span>
@@ -96,6 +142,7 @@ const CityHotels = () => {
           </div>
         </div>
 
+        {/* Dynamic Filter Sections */}
         {filterSections.map((section) => (
           <div key={section.title}>
             <h4 className="font-semibold mb-2">{section.title}</h4>
@@ -104,14 +151,11 @@ const CityHotels = () => {
                 <input
                   type="radio"
                   name={section.name}
+                  key={`${section.key}-${opt}-${filters[section.key] === opt}`}
                   className="mr-2"
                   checked={filters[section.key] === opt}
-                  onChange={() =>
-                    setFilters((prev) => ({
-                      ...prev,
-                      [section.key]: opt,
-                    }))
-                  }
+                  onClick={() => handleFilterChange(section.key, opt)}
+                  readOnly
                 />
                 {opt}
               </div>

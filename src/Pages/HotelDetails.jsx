@@ -364,6 +364,7 @@ const HotelDetails = () => {
     <li>
       This hotel is independently managed and operated under a licensed hospitality brand.
     </li>
+    <li>Services like early check-in, extra guest etc are chargeable extra.</li>
   </ul>
 </div>
 
