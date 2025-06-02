@@ -145,13 +145,27 @@ const BookingPage = () => {
             />
           </div>
           <div>
-            <label>Mobile</label>
-            <input
-              type="tel"
-              value={mobile}
-              onChange={(e) => setMobile(e.target.value)}
-              className="border p-2 w-full rounded"
-            />
+           <div>
+  <label>Mobile</label>
+  <div className="flex">
+    <select className="border p-2 rounded-l w-24">
+      <option value="+91">+91 🇮🇳</option>
+      <option value="+1">+1 🇺🇸</option>
+      <option value="+44">+44 🇬🇧</option>
+      <option value="+61">+61 🇦🇺</option>
+      <option value="+971">+971 🇦🇪</option>
+      {/* Add more country codes if needed */}
+    </select>
+    <input
+      type="tel"
+      value={mobile}
+      onChange={(e) => setMobile(e.target.value)}
+      placeholder="Phone number"
+      className="border border-l-0 p-2 w-full rounded-r"
+    />
+  </div>
+</div>
+
           </div>
 
           {/* Guests Dropdown */}

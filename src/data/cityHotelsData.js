@@ -17,6 +17,7 @@ const cityHotelsData = {
       amenities: ["Complimentary Buffet Breakfast","AC","TV","Free Wifi","Kitchen","Queen Sized Bed", "Power backup", "Geyser", "Elevator","In-house Restaurant","Card payment","CCTV cameras","Bar","Dining area","Doctor on call","Reception","Security","24/7 check-in", "Luggage assistance", "Electric Kettle","Daily housekeeping","Fire extinguisher","First-aid kit","Free parking","Breakfast Available"],
       location: "Chennai, Tamil Nadu, India",
       
+      
     },
     {
       id: 2,
