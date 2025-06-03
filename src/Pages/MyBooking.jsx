@@ -5,12 +5,13 @@ import {
   FaMoneyBillWave,
   FaClock,
 } from "react-icons/fa";
-import { AiOutlineUser } from "react-icons/ai";
+import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import { MdLocationOn } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const MyBooking = () => {
   const [booking, setBooking] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("myBooking")) || [];
     setBooking(data);
@@ -67,7 +68,19 @@ const MyBooking = () => {
                   <div className="flex items-center gap-3">
                     <AiOutlineUser className="text-green-600" />
                     <span>
-                      <strong className="text-purple-700">Guest:</strong> {b.guestName}
+                      <strong className="text-purple-700">Guest:</strong> {b.fullName}
+                    </span>
+                  </div>
+                   <div className="flex items-center gap-3">
+                    <AiOutlineMail className="text-green-600" />
+                    <span>
+                      <strong className="text-purple-700">Guest:</strong> {b.email}
+                    </span>
+                  </div>
+                   <div className="flex items-center gap-3">
+                    <AiOutlinePhone className="text-green-600" />
+                    <span>
+                      <strong className="text-purple-700">Guest:</strong> {b.mobile}
                     </span>
                   </div>
 
@@ -87,15 +100,33 @@ const MyBooking = () => {
                   </div>
 
                   {/* Cancel Booking Button */}
-                  <div className="pt-4">
-                    <button
-                      onClick={() => handleCancelBooking(b.orderId)}
-                      className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
-                    >
-                      Cancel Booking
-                    </button>
-                  </div>
+                  <div className="pt-4 flex gap-4">
+                  <button
+                    onClick={() => handleCancelBooking(b.orderId)}
+                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
+                  >
+                    Cancel Booking
+                  </button>
+                  <button
+                    onClick={() =>
+                    navigate("/payment", {
+                    state: {
+                      fullName: b.fullName,
+                      email: b.email,
+                      mobile: b.mobile,
+                      hotel: b.hotel,
+                      payableAmount: b.hotel.price - 300 - 250 + 50, // same logic as in PaymentPage
+                      },
+                    })
+                  }
+                  className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+                > 
+                Pay Now
+                </button>
+
+                  
                 </div>
+              </div>
               </li>
             ))}
           </ul>

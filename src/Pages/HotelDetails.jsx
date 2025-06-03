@@ -1,5 +1,6 @@
-import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+
+import { useParams, useNavigate, } from "react-router-dom";
 import cityHotelsData from "../data/cityHotelsData";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
@@ -9,7 +10,7 @@ import { CheckCircle, Star, Minus, Plus, Trash2 } from "lucide-react";
 import roomData from "../data/roomData";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import BookingForm from "../Components/BookingForm";
+import RatingsAndReviews from "../Components/RatingAnd Reviews";
 
 const HotelDetails = () => {
   const { hotelId } = useParams();
@@ -27,6 +28,7 @@ const HotelDetails = () => {
   const [bookingName, setBookingName] = React.useState("Adya");
 
   const [roomsData, setRoomsData] = React.useState([{ adults: 1, children: 0 }]);
+  const [hasGST, setHasGST] = useState(false);
 
   if (!hotel) return <div className="p-4">Hotel not found</div>;
 
@@ -308,20 +310,26 @@ const HotelDetails = () => {
           </div>
         </div>
 
-                 {/* Right Section */}
+              {/* Ratings and Reviews */}
+              <div className="mt-8">
+                <h2 className="text-2xl font-semibold mb-4">Ratings & Reviews</h2>
+                  <RatingsAndReviews hotelId={hotel.id} />
+              </div>
+
+              {/* Right Section */}
          <div className="md:col-span-1 space-y-8">
-          {/* Nearby Locations */}
- <div className="mb-8">
-   <h2 className="text-2xl font-semibold mb-4">What's nearby?</h2>
-   <div className="border p-4 rounded-md">
-     <div className="space-y-2 text-gray-700 text-sm">
-       <p>🚌 Silk Board Bus Stop - 3km</p>
-       <p>🏥 Jayadeva Hospital - 3.3km</p>
-       <p>🛫 Rajadhani Tours - 3.4km</p>
-       <p>🍽️ Savoury Sea Shell - 2.7km</p>
-     </div>
-   </div>
- </div>
+                {/* Nearby Locations */}
+              <div className="mb-8">
+              <h2 className="text-2xl font-semibold mb-4">What's nearby?</h2>
+                <div className="border p-4 rounded-md">
+                  <div className="space-y-2 text-gray-700 text-sm">
+                    <p>🚌 Silk Board Bus Stop - 3km</p>
+                    <p>🏥 Jayadeva Hospital - 3.3km</p>
+                    <p>🛫 Rajadhani Tours - 3.4km</p>
+                    <p>🍽️ Savoury Sea Shell - 2.7km</p>
+                </div>
+              </div>
+          </div>
 
          {/* Location Section */}
 <div className="mb-8">
@@ -337,6 +345,63 @@ const HotelDetails = () => {
     allowFullScreen
   ></iframe>
 </div>
+
+              {/* GST Section */}
+               <div className="p-4 border rounded-xl shadow-sm space-y-4 text-sm">
+       {/* GST Checkbox */}
+      <label className="flex items-center gap-2 text-sm font-medium">
+        <span>I have a GST number (optional)?</span>
+        <div className="relative">
+          <input
+            type="checkbox"
+            checked={hasGST}
+            onChange={() => setHasGST(!hasGST)}
+            className="peer appearance-none w-5 h-5 border border-red-500 rounded bg-white checked:bg-red-500 checked:border-red-500"
+          />
+          {/* White Tick */}
+          <svg
+            className="absolute inset-0 w-5 h-5 text-white pointer-events-none hidden peer-checked:block"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </div>
+      </label>
+
+      {/* GST Fields */}
+      {hasGST && (
+        <div className="space-y-3">
+          <input
+            type="text"
+            placeholder="GSTIN"
+            className="w-full border p-2 rounded-md text-sm"
+          />
+          <input
+            type="text"
+            placeholder="Business Name"
+            className="w-full border p-2 rounded-md text-sm"
+          />
+          <input
+            type="text"
+            placeholder="Business Address"
+            className="w-full border p-2 rounded-md text-sm"
+          />
+          <input
+            type="email"
+            placeholder="Business Email"
+            className="w-full border p-2 rounded-md text-sm"
+          />
+          <p className="text-sm text-red-700 bg-red-100 p-2 rounded-md">
+            In case of invalid/cancelled GSTIN, this booking shall be considered as personal booking
+          </p>
+        </div>
+      )}
+    </div>
 
 
 
