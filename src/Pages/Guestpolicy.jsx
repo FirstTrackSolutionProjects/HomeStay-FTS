@@ -15,10 +15,10 @@ const GuestPolicy = () => {
             </h5>
             <ul className="list-disc ml-6 mt-1 space-y-1">
               <li>
-                Check-in time: <strong>[11 AM]</strong>
+                Check-in time: <strong>[12 PM]</strong>
               </li>
               <li>
-                Check-out time: <strong>[11 PM]</strong>
+                Check-out time: <strong>[11 AM]</strong>
               </li>
               <li>
                 Sometimes Check-In and Check-Out times depends upon the hotel policy.

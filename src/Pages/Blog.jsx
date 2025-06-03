@@ -45,11 +45,11 @@ const Blog = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 max-w-6xl mx-auto mb-16">
         {blogPosts.map(post => (
           <div key={post.id} className="bg-white rounded-xl shadow-md overflow-hidden">
-            <img src={post.image} alt={post.title} className="w-full h-48 object-cover" />
+            <img src={post.image} alt={post.title} className="w-full h-80 object-cover" />
             <div className="p-6 text-left">
               <h3 className="text-xl font-semibold text-gray-800 mb-2">{post.title}</h3>
               <p className="text-gray-600 mb-4">{post.excerpt}</p>
-              {/* <a href="#" className="text-indigo-600 hover:underline">Read More →</a> */}
+             
             </div>
           </div>
         ))}

@@ -71,7 +71,15 @@ return (
           <div className="flex justify-between items-center border-b pb-2 mb-4">
             
             <button
-              onClick={() => navigate(-1)} 
+              onClick={() => navigate(`/booking/${hotel.city}/${hotel.id}`, {
+                state: {
+                  fullName,
+                  email,
+                  mobile,
+                  hotel,
+                  
+                }
+              })} 
               className="text-red-500 text-lg  hover:text-red-600"
             >
             ← Modify
@@ -164,9 +172,9 @@ return (
           <p className="text-sm mb-1">1 Night · 1 Room, 1 Guest</p>
           <div className="text-sm space-y-1">
             <p>Room price: ₹{hotel.price}</p>
-            <p>Instant discount: -₹300</p>
-            <p>Coupon Discount: -₹250</p>
+            <p>discount: -₹300</p>
             <p>Price surge: ₹50</p>
+            <p>Taxes: 18%</p>
           </div>
           <hr className="my-2" />
           <div className="font-bold text-lg">Payable Amount: ₹{hotel.price - 300 - 250 + 50}</div>

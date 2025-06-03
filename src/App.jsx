@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 
+import Filter from "./Pages/Filter";
+
 import MyBooking from "./Pages/MyBooking";
 
 import Home from "./Pages/HomePage";
@@ -53,6 +55,8 @@ const App = () => {
 
         <Route path="/mybooking" element={<MyBooking />} />
 
+        <Route path="/filter" element={<Filter />} />
+
         <Route path="/city/:cityName" element={<CityHotels />} />
         <Route path="/city/hotel/:hotelId" element={<HotelDetails />} />
         <Route path="/booking/:cityName/:hotelId" element={<BookingPage />} />
@@ -63,7 +67,7 @@ const App = () => {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
 
-        <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/contact" element={<ContactUs />} />
         <Route path="/partner" element={<Partner />} />
         <Route path="/partner/:propertyType" element={<PartnerForm />} />
         <Route path="/aboutus" element={<Aboutus />} />

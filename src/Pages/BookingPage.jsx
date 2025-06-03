@@ -18,10 +18,10 @@ const BookingPage = () => {
             (h) => h.id === Number(hotelId)
           );
   }
-
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState("");
+  const { state } = useLocation();
+  const [fullName, setFullName] = useState(state?.fullName || "");
+  const [email, setEmail] = useState(state?.email || "");
+  const [mobile, setMobile] = useState(state?.mobile || "");
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [nights, setNights] = useState(1);
@@ -146,22 +146,23 @@ const BookingPage = () => {
           </div>
           <div>
            <div>
-  <label>Mobile</label>
-  <div className="flex">
-    <select className="border p-2 rounded-l w-24">
-      <option value="+91">+91 🇮🇳</option>
-      <option value="+1">+1 🇺🇸</option>
-      <option value="+44">+44 🇬🇧</option>
-      <option value="+61">+61 🇦🇺</option>
-      <option value="+971">+971 🇦🇪</option>
-      {/* Add more country codes if needed */}
-    </select>
-    <input
-      type="tel"
-      value={mobile}
-      onChange={(e) => setMobile(e.target.value)}
-      placeholder="Phone number"
-      className="border border-l-0 p-2 w-full rounded-r"
+
+            <label>Mobile</label>
+              <div className="flex">
+                <select className="border p-2 rounded-l w-24">
+                <option value="+91">+91 🇮🇳</option>
+                <option value="+1">+1 🇺🇸</option>
+                <option value="+44">+44 🇬🇧</option>
+                <option value="+61">+61 🇦🇺</option>
+                <option value="+971">+971 🇦🇪</option>
+            {/* Add more country codes if needed */}
+                </select>
+            <input
+              type="tel"
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
+              placeholder="Phone number"
+              className="border border-l-0 p-2 w-full rounded-r"
     />
   </div>
 </div>
@@ -319,8 +320,8 @@ const BookingPage = () => {
         </p>
 
           <p className="font-medium">Total Base Price: ₹{basePrice}</p>
-          <p>Instant Discount: -₹300</p>
-          <p>Coupon: -₹250</p>
+          <p>Discount: -₹300</p>
+          
           <p>Taxes: +₹50</p>
         </div>
 
