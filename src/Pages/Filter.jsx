@@ -1,105 +1,83 @@
-// import { useState } from "react";
-
-// const Filter = ({ onFilterChange }) => {
-//   const [filters, setFilters] = useState({
-//     breakfast: false,
-//     wifi: false,
-//     pool: false,
-//     lowToHigh: false,
-//     highToLow: false,
-//     topRated: false,
-//   });
-
-//   const handleChange = (e) => {
-//     const { name, checked } = e.target;
-//     const updatedFilters = { ...filters, [name]: checked };
-//     setFilters(updatedFilters);
-//     onFilterChange(updatedFilters); // Propagate changes to parent
-//   };
-
-//   return (
-//     <div className="w-full max-w-sm p-4 border rounded-lg shadow-md bg-white space-y-4">
-//       <h2 className="text-lg font-semibold">Filters</h2>
-
-//       <div className="space-y-3">
-//         <div className="font-medium text-sm text-gray-600">Amenities</div>
-//         <label className="flex items-center gap-2 text-sm">
-//           <input
-//             type="checkbox"
-//             name="breakfast"
-//             checked={filters.breakfast}
-//             onChange={handleChange}
-//             className="form-checkbox text-blue-600"
-//           />
-//           Free Breakfast
-//         </label>
-//         <label className="flex items-center gap-2 text-sm">
-//           <input
-//             type="checkbox"
-//             name="wifi"
-//             checked={filters.wifi}
-//             onChange={handleChange}
-//             className="form-checkbox text-blue-600"
-//           />
-//           Free Wi-Fi
-//         </label>
-//         <label className="flex items-center gap-2 text-sm">
-//           <input
-//             type="checkbox"
-//             name="pool"
-//             checked={filters.pool}
-//             onChange={handleChange}
-//             className="form-checkbox text-blue-600"
-//           />
-//           Swimming Pool
-//         </label>
-//       </div>
-
-//       <div className="space-y-3 pt-2 border-t">
-//         <div className="font-medium text-sm text-gray-600">Sort By</div>
-//         <label className="flex items-center gap-2 text-sm">
-//           <input
-//             type="checkbox"
-//             name="lowToHigh"
-//             checked={filters.lowToHigh}
-//             onChange={handleChange}
-//             className="form-checkbox text-green-600"
-//           />
-//           Price: Low to High
-//         </label>
-//         <label className="flex items-center gap-2 text-sm">
-//           <input
-//             type="checkbox"
-//             name="highToLow"
-//             checked={filters.highToLow}
-//             onChange={handleChange}
-//             className="form-checkbox text-green-600"
-//           />
-//           Price: High to Low
-//         </label>
-//         <label className="flex items-center gap-2 text-sm">
-//           <input
-//             type="checkbox"
-//             name="topRated"
-//             checked={filters.topRated}
-//             onChange={handleChange}
-//             className="form-checkbox text-green-600"
-//           />
-//           Top Rated
-//         </label>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Filter;
-
-import React from 'react'
+import React, { useState } from 'react';
 
 const Filter = () => {
-  return (
-    <div>Filter</div>
-  )
-}
+  const [price, setPrice] = useState(10000);
 
-export default Filter
+  return (
+    <div className="w-full max-w-4xl p-4 rounded-lg shadow-md bg-white space-y-6
+                    md:space-y-0 md:grid md:grid-cols-2 md:gap-6
+                    lg:max-w-5xl lg:grid-cols-3">
+      <h2 className="text-lg font-semibold col-span-full">Filters</h2>
+
+      {/* Price Range */}
+      <div>
+        <h3 className="font-medium mb-1">Price Range</h3>
+        <input
+          type="range"
+          min="445"
+          max="10000"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          className="w-full"
+        />
+        <div className="flex justify-between text-sm mt-1">
+          <span>₹445</span>
+          <span>₹{price}</span>
+        </div>
+      </div>
+
+      {/* Rooms & Suites */}
+      <div>
+        <h3 className="font-medium mb-1">Rooms & Suites</h3>
+        <div className="space-y-1 text-sm">
+          <label><input type="radio" name="room" /> Couple Friendly</label><br />
+          <label><input type="radio" name="room" /> International Guests</label><br />
+          <label><input type="radio" name="room" /> Business Travellers</label>
+        </div>
+      </div>
+
+      {/* Category */}
+      <div>
+        <h3 className="font-medium mb-1">Category</h3>
+        <div className="space-y-1 text-sm">
+          <label><input type="radio" name="category" /> Resort</label><br />
+          <label><input type="radio" name="category" /> Executive</label><br />
+          <label><input type="radio" name="category" /> Home</label><br />
+          <label><input type="radio" name="category" /> Hotel Rooms</label>
+        </div>
+      </div>
+
+      {/* Accommodation Type */}
+      <div>
+        <h3 className="font-medium mb-1">Accommodation Type</h3>
+        <div className="space-y-1 text-sm">
+          <label><input type="radio" name="accommodation" /> Hotel</label><br />
+          <label><input type="radio" name="accommodation" /> Guest House</label>
+        </div>
+      </div>
+
+      {/* Hotel Facilities */}
+      <div>
+        <h3 className="font-medium mb-1">Hotel Facilities</h3>
+        <div className="space-y-1 text-sm">
+          <label><input type="radio" name="facility" /> Seating Area</label><br />
+          <label><input type="radio" name="facility" /> Swimming Pool</label><br />
+          <label><input type="radio" name="facility" /> King Sized Bed</label><br />
+          <label><input type="radio" name="facility" /> Queen Sized Bed</label>
+        </div>
+      </div>
+
+      {/* Check-in Features */}
+      <div>
+        <h3 className="font-medium mb-1">Check-in Features</h3>
+        <div className="space-y-1 text-sm">
+          <label><input type="radio" name="checkin" /> 24×7 Check-in</label><br />
+          <label><input type="radio" name="checkin" /> Free Cancellation</label><br />
+          <label><input type="radio" name="checkin" /> ID Proof Required</label>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Filter;

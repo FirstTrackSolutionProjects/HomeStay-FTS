@@ -215,12 +215,17 @@ const CityHotels = () => {
                     >
                       View Details
                     </button>
-                    <button
-                      onClick={() => navigate(`/booking/${cityName}/${hotel.id}`)}
-                      className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 text-sm"
-                    >
+                      <button
+                        onClick={() =>
+                        navigate(`/booking/${cityName}/${hotel.id}`, {
+                        state: { hotel },
+                        })
+                      }
+                    className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 text-sm"
+                      > 
                       Book Now
                     </button>
+
                   </div>
                 </div>
               </div>
