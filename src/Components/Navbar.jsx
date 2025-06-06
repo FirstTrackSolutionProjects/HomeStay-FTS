@@ -85,17 +85,22 @@
 
 // export default Navbar;
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
 import SideBar from "./SideBar";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef(null); 
 
+  // const toggleMenu = () => {
+  //   setMenuOpen(!menuOpen);
+  // };
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+    setMenuOpen((prev) => !prev);
   };
+
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -103,11 +108,12 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className="flex items-center justify-between px-4 py-2 bg-gradient-to-r from-sky-200 via-cyan-100 to-teal-100 shadow-md">
+      <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 py-2 bg-gradient-to-r from-sky-200 via-cyan-100 to-teal-100 shadow-md">
+
         {/* Logo + Brand */}
         <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center gap-2" onClick={closeMenu}>
-            <img src="/images/logo.jpg" alt="Hotel Logo" className="w-12 h-12 rounded-full" />
+            <img src="/images/logo.jpg" alt="Hotel Logo" className="w-12 h-12" />
             <h1 className="text-lg font-bold">
               <span className="text-gray-800">First Home</span>{" "}
               <span className="text-orange-600">Stay</span>
@@ -120,21 +126,21 @@ const NavBar = () => {
           <Link to="/" className="hover:underline">Home</Link>
           <Link to="/aboutus" className="hover:underline">About Us</Link>
           <Link to="/mybooking" className="hover:underline">My Booking</Link>
-          <Link to="/location" className="hover:underline">Location</Link>
-          <Link to="/filter" className="hover:underline">Business</Link>
-          <Link to="/contactus" className="hover:underline">Contact</Link>
+          
+          <Link to="/filter" className="hover:underline">Business Plan</Link>
+          <Link to="/contact" className="hover:underline">Contact</Link>
           <Link to="/partner" className="hover:underline">Partner</Link>
           <Link to="/sign-in" className="hover:underline">Sign In</Link>
         </div>
 
         {/* Mobile Toggle */}
-        <button onClick={toggleMenu} className="md:hidden text-black p-2 rounded">
+        <button  ref={menuButtonRef} onClick={toggleMenu} className="md:hidden text-black p-2 rounded">
           <Menu size={40} />
         </button>
       </nav>
 
       {/* Sidebar for Mobile */}
-      <SideBar isOpen={menuOpen} toggleMenu={toggleMenu} />
+      <SideBar isOpen={menuOpen} toggleMenu={toggleMenu} menuButtonRef={menuButtonRef} />
     </>
   );
 };

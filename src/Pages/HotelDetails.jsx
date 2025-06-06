@@ -10,7 +10,7 @@ import { CheckCircle, Star, Minus, Plus, Trash2 } from "lucide-react";
 import roomData from "../data/roomData";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import RatingsAndReviews from "../Components/RatingAnd Reviews";
+import RatingsAndReviews from "../Components/RatingAndReviews";
 
 const HotelDetails = () => {
   const { hotelId } = useParams();
@@ -93,7 +93,7 @@ const HotelDetails = () => {
   };
 
   return (
-    <div className="p-4 max-w-6xl mx-auto">
+    <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       {/* Hotel Header */}
       <div className="mb-3">
         <h1 className="text-2xl font-bold">{hotel.name}</h1>
@@ -487,4 +487,3 @@ const HotelDetails = () => {
 };
 
 export default HotelDetails;
-

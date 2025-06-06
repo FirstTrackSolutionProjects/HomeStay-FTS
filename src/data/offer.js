@@ -1,7 +1,7 @@
 const offerHotelsByCity = {
   goa: [
     {
-      id: 'goa-1',
+      id: '101',
       name: 'The Astor Hotel',
       price: 5000,
       rating: 5,
@@ -9,7 +9,7 @@ const offerHotelsByCity = {
       description: 'Luxury hotel near Candolim beach.',
     },
     {
-      id: 'goa-2',
+      id: '102',
       name: 'Dimaru Boutique Hotel',
       price: 4500,
       rating: 4.5,
@@ -17,7 +17,7 @@ const offerHotelsByCity = {
       description: 'Cozy hotel right at the beach.',
     },
     {
-      id: 'goa-3',
+      id: '103',
       name: 'Mamagoa Beach Resort',
       price: 4000,
       rating: 4.2,
@@ -25,7 +25,7 @@ const offerHotelsByCity = {
       description: 'Cozy hotel right at the beach.',
     },
     {
-      id: 'goa-4',
+      id: '104',
       name: 'Zulu Land cottages',
       price: 3000,
       rating: 3.9,
@@ -35,7 +35,7 @@ const offerHotelsByCity = {
   ],
   udaipur: [
     {
-      id: 'udaipur-1',
+      id: '201',
       name: 'The Oberoi Udaivilas Udaipur',
       price: 4000,
       rating: 5,
@@ -43,7 +43,7 @@ const offerHotelsByCity = {
       description: 'Romantic stay beside Lake Pichola.',
     },
     {
-      id: 'udaipur-2',
+      id: '202',
       name: 'Garden Hotel - Heritage by HRH Group of Hotels',
       price: 3500,
       rating: 4.6,
@@ -51,7 +51,7 @@ const offerHotelsByCity = {
       description: 'A heritage property in the heart of the city.',
     },
     {
-      id: 'udaipur-3',
+      id: '203',
       name: 'Tripli Hotels Shambhu Villas',
       price: 3000,
       rating: 4.1,
@@ -59,7 +59,7 @@ const offerHotelsByCity = {
       description: 'A heritage property in the heart of the city.',
     },
     {
-      id: 'udaipur-4',
+      id: '204',
       name: 'Little Garden Guest House',
       price: 2500,
       rating: 3.8,
@@ -69,7 +69,7 @@ const offerHotelsByCity = {
   ],
   manali: [
     {
-      id: 'manali-1',
+      id: '301',
       name: 'Montane Chalet ,Sethan',
       price: 4800,
       rating: 4.9,
@@ -77,7 +77,7 @@ const offerHotelsByCity = {
       description: 'Snow-capped views and cozy rooms.',
     },
     {
-      id: 'manali-2',
+      id: '302',
       name: 'Olgah Manalit',
       price: 4000,
       rating: 4.4,
@@ -85,7 +85,7 @@ const offerHotelsByCity = {
       description: 'Stay close to nature with river sounds.',
     },
     {
-      id: 'manali-3',
+      id: '303',
       name: 'Honeymoon Inn Manali',
       price: 3500,
       rating: 4,
@@ -93,7 +93,7 @@ const offerHotelsByCity = {
       description: 'Stay close to nature with river sounds.',
     },
     {
-      id: 'manali-4',
+      id: '304',
       name: 'Hotel Snow View Manali',
       price: 3000,
       rating: 3.7,

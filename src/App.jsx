@@ -17,6 +17,7 @@ import PaymentPage from "./Pages/PaymentPage";
 import OfferHotels from "./Pages/OfferHotels";
 import OfferDetails from "./Pages/OfferDetails";
 
+
 import SignIn from "./Pages/SignIn";
 import Register from "./Pages/Register";
 
@@ -50,6 +51,9 @@ const App = () => {
     <Router>
       <ScrollToTop />
       <Navbar />
+
+       <div className="pt-16 min-h-[calc(100vh-64px)] overflow-x-hidden overflow-y-auto flex flex-col bg-white">
+
       <Routes>
         <Route path="/" element={<Home />} />
 
@@ -57,12 +61,19 @@ const App = () => {
 
         <Route path="/filter" element={<Filter />} />
 
+      
+
         <Route path="/city/:cityName" element={<CityHotels />} />
         <Route path="/city/hotel/:hotelId" element={<HotelDetails />} />
         <Route path="/booking/:cityName/:hotelId" element={<BookingPage />} />
+
         <Route path="/payment" element={<PaymentPage />} />
+
         <Route path="/offer/:city" element={<OfferHotels />} />
-        <Route path="/offer-details/:id" element={<OfferDetails />} />
+        <Route path="/offer-details/:city/:id" element={<OfferDetails />} />
+        
+
+        
 
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
@@ -82,6 +93,9 @@ const App = () => {
         <Route path="/security-awareness" element={<CyberSecurityAwareness />} />
         <Route path="/disclosure" element={<ResponsibleDisclosure />} />
       </Routes>
+      </div>
+
+      
       <Footer/>
     </Router>
   );
